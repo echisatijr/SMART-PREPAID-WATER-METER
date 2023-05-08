@@ -23,7 +23,7 @@
 
 // Insert your network credentials
 #define WIFI_SSID "RussiaN"
-#define WIFI_PASSWORD "mlakalakanji"
+#define WIFI_PASSWORD "mlakalakanji1"
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA"
