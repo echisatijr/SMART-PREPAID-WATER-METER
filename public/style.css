@@ -1,0 +1,17 @@
+body{
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.input-data{
+    
+    width: 25rem ;
+    margin: 10px;
+}
+.input-data input{
+    margin-bottom: 10px;
+}
+.get-value{
+    margin: 10px;
+}
