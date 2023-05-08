@@ -166,8 +166,8 @@ void loop(){
  
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
-    // Write an Int number on the database path test/int
-    if (Firebase.RTDB.setInt(&fbdo, "test/int", totalLitres)){
+    // Write total number of litters (volume) on the database path meter/volume
+    if (Firebase.RTDB.setInt(&fbdo, "meter/volume", totalLitres)){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
@@ -182,8 +182,8 @@ void loop(){
     }
     count++;
    
-    // Write an Float number on the database path test/float
-    if (Firebase.RTDB.setFloat(&fbdo, "test/float", flowRate)){
+    // Write the flow rate of water on the database path meter/volume
+    if (Firebase.RTDB.setFloat(&fbdo, "meter/flowRate", flowRate)){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
