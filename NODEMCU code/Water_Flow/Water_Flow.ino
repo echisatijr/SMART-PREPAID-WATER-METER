@@ -108,7 +108,7 @@ void setup(){
     Serial.printf("%s\n", config.signer.signupError.message.c_str());
   }
 
-  // Assigning the callback function for the long running token generation task
+  //Assigning the callback function for the long running token generation task
   config.token_status_callback = tokenStatusCallback;
 
   Firebase.begin(&config, &auth);
@@ -142,35 +142,43 @@ void loop(){
     flowMilliLitres = (flowRate / 60) * 1000;
     flowLitres = (flowRate / 60);
  
-    // Add the millilitres passed in this second to the cumulative total
+    //Adding the millilitres passed in this second to the cumulative total
     totalMilliLitres += flowMilliLitres;
     totalLitres += flowLitres;
    
-    // Print the flow rate for this second in litres / minute
+    //Printing the flow rate for this second in litres/ minute
     Serial.print("Flow rate: ");
-    Serial.print(float(flowRate));  // Print the integer part of the variable
+    Serial.print(float(flowRate));
     Serial.print("L/min");
-    Serial.print("\t");       // Print tab space
+    Serial.print("\t");
 
-    // Print the cumulative total of litres flowed since starting
+    //Printing the flow rate for this second in litres/ minute
+    lcd.setCursor(0,1);  
+    lcd.print("FR:");
+    lcd.print(flowRate);
+
+    //Printing the cumulative total litres flowed since starting
     Serial.print("Output Liquid Quantity: ");
     Serial.print(totalMilliLitres);
     Serial.print("mL / ");
     Serial.print(totalLitres);
     Serial.println("L");
+
+    //Printing the cumulative total liters flowed since starting
+    lcd.setCursor(9,1);  
+    lcd.print("VL:");
+    lcd.print(totalLitres);
   }
  
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
+
     // Write total number of litters (volume) on the database path meter/volume
     if (Firebase.RTDB.setInt(&fbdo, "meter/volume", totalLitres)){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
      
-      lcd.setCursor(0,1);  
-      lcd.print("VOLUME : ");
-      lcd.print(totalLitres);
     }
     else {
       Serial.println("FAILED");
@@ -178,11 +186,12 @@ void loop(){
     }
     count++;
    
-    // Write the flow rate of water on the database path meter/volume
+    //Writing the flow rate of water on the database path meter/volume
     if (Firebase.RTDB.setFloat(&fbdo, "meter/flowRate", flowRate)){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
+
     }
     else {
       Serial.println("FAILED");
