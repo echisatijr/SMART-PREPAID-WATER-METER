@@ -16,7 +16,7 @@ var intReading;
 // Attach an asynchronous callback to read the data
 databaseFlowRate.on('value', (snapshot) => {
   floatReading = snapshot.val();
-  console.log(floatReading);
+  console.log("FlowRate : ",floatReading);
   document.getElementById("reading-float").innerHTML = floatReading;
 }, (errorObject) => {
   console.log('The read failed: ' + errorObject.name);
@@ -24,7 +24,7 @@ databaseFlowRate.on('value', (snapshot) => {
 
 databaseVolume.on('value', (snapshot) => {
   intReading = snapshot.val();
-  console.log(intReading);
+  console.log("Volume   : ", intReading);
   document.getElementById("reading-int").innerHTML = intReading;
 }, (errorObject) => {
   console.log('The read failed: ' + errorObject.name);
