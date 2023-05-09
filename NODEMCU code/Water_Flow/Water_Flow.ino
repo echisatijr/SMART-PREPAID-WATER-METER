@@ -6,35 +6,34 @@
 
 #include <Arduino.h>
 #if defined(ESP32)
-#include <WiFi.h>
+//#include <WiFi.h>
 #elif defined(ESP8266)
-#include <ESP8266WiFi.h>
+//#include <ESP8266WiFi.h>
 #endif
 #include <Firebase_ESP_Client.h>
 
- #include <Wire.h>           
- #include <LiquidCrystal_I2C.h>    
- LiquidCrystal_I2C lcd(0x27,16,2);   
+#include <Wire.h>           
+#include <LiquidCrystal_I2C.h>    
+LiquidCrystal_I2C lcd(0x27,16,2);   
 
 //Provide the token generation process info.
 #include "addons/TokenHelper.h"
 //Provide the RTDB payload printing info and other helper functions.
 #include "addons/RTDBHelper.h"
 
-// Insert your network credentials
+//Insert your network credentials
 #define WIFI_SSID "RussiaN"
 #define WIFI_PASSWORD "mlakalakanji1"
 
-// Insert Firebase project API Key
+//Firebase project API Key, RTDB URLefine the RTDB URL
 #define API_KEY "AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA"
-
-// Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://meter-123-default-rtdb.firebaseio.com"
 
-// some pins
+//defining some pins
 #define LED_BUILTIN 16
 #define SENSOR  D4
 
+//define some variables 
 long currentMillis = 0;
 long previousMillis = 0;
 int interval = 1000;
@@ -55,9 +54,8 @@ void IRAM_ATTR pulseCounter()
  
 WiFiClient client;
 
-//Define Firebase Data object
+//Firebase Data object
 FirebaseData fbdo;
-
 FirebaseAuth auth;
 FirebaseConfig config;
 
@@ -65,28 +63,28 @@ unsigned long sendDataPrevMillis = 0;
 int count = 0;
 bool signupOK = false;
 
-
 void setup(){
-   
-   lcd.begin();  
-   lcd.backlight();   
-   
-   Serial.begin(115200);
 
-    pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(SENSOR, INPUT_PULLUP);
    
-    pulseCount = 0;
-    flowRate = 0.0;
-    flowMilliLitres = 0;
-    totalMilliLitres = 0;
-    previousMillis = 0;
+  lcd.begin();  
+  lcd.backlight();   
+   
+  Serial.begin(115200);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(SENSOR, INPUT_PULLUP);
+   
+  pulseCount = 0;
+  flowRate = 0.0;
+  flowMilliLitres = 0;
+  totalMilliLitres = 0;
+  previousMillis = 0;
  
-    attachInterrupt(digitalPinToInterrupt(SENSOR), pulseCounter, FALLING);
-
+  attachInterrupt(digitalPinToInterrupt(SENSOR), pulseCounter, FALLING);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to Wi-Fi");
+
   while (WiFi.status() != WL_CONNECTED){
     Serial.print(".");
     delay(300);
@@ -97,23 +95,21 @@ void setup(){
   Serial.println(WiFi.localIP());
   Serial.println();
 
-  /* Assign the api key (required) */
+  //Assigning the api key, the RTDB URL
   config.api_key = API_KEY;
-
-  /* Assign the RTDB URL (required) */
   config.database_url = DATABASE_URL;
 
-  /* Sign up */
+  //Sign up
   if (Firebase.signUp(&config, &auth, "", "")){
-    Serial.println("ok");
+    Serial.println("Status is OK");
     signupOK = true;
   }
   else{
     Serial.printf("%s\n", config.signer.signupError.message.c_str());
   }
 
-  /* Assign the callback function for the long running token generation task */
-  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
+  // Assigning the callback function for the long running token generation task
+  config.token_status_callback = tokenStatusCallback;
 
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
@@ -121,7 +117,7 @@ void setup(){
 
 void loop(){
  
-    // lcd.backlight();
+  //Printing to the LCD
   lcd.setCursor(0,0);  
   lcd.print("SMART WATR METER");  
 
@@ -132,17 +128,17 @@ void loop(){
     pulse1Sec = pulseCount;
     pulseCount = 0;
  
-    // Because this loop may not complete in exactly 1 second intervals we calculate
-    // the number of milliseconds that have passed since the last execution and use
-    // that to scale the output. We also apply the calibrationFactor to scale the output
-    // based on the number of pulses per second per units of measure (litres/minute in
-    // this case) coming from the sensor.
+    /* Because this loop may not complete in exactly 1 second intervals we calculate
+    the number of milliseconds that have passed since the last execution and use
+    that to scale the output. We also apply the calibrationFactor to scale the output
+    based on the number of pulses per second per units of measure (litres/minute in
+    this case) coming from the sensor. */
     flowRate = ((1000.0 / (millis() - previousMillis)) * pulse1Sec) / calibrationFactor;
     previousMillis = millis();
  
-    // Divide the flow rate in litres/minute by 60 to determine how many litres have
-    // passed through the sensor in this 1 second interval, then multiply by 1000 to
-    // convert to millilitres.
+    /* Divide the flow rate in litres/minute by 60 to determine how many litres have
+    passed through the sensor in this 1 second interval, then multiply by 1000 to
+    convert to millilitres. */
     flowMilliLitres = (flowRate / 60) * 1000;
     flowLitres = (flowRate / 60);
  
