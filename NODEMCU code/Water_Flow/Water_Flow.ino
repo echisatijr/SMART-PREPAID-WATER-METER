@@ -178,7 +178,6 @@ void loop(){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
-     
     }
     else {
       Serial.println("FAILED");
@@ -191,7 +190,6 @@ void loop(){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
-
     }
     else {
       Serial.println("FAILED");
