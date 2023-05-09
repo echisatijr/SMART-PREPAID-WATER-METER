@@ -2,12 +2,12 @@ body{
     margin: 5px;
     padding: 5px;
     box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, sans-serif !important;
 }
 
 .input-data{
     
-    width: 25rem ;
+    width: 22rem ;
     margin: 10px;
 }
 .input-data input{
