@@ -14,7 +14,8 @@ const float calibrationFactor = 90;
 // Pin assignments
 const int sensorPin = 2;
 const int pumpingMotor = 5;
-int BuzzerPin = 4;
+int buzzerPin = 4; 
+
 const int rs = 12, en = 11, d4 = 9, d5 = 8, d6 = 7, d7 = 6;
 
 // Initialize LCD screen
@@ -32,11 +33,10 @@ void setup() {
   digitalWrite(pumpingMotor, HIGH); // Pumping motor off
   pinMode(sensorPin, INPUT);
   digitalWrite(sensorPin, HIGH); // Turn on internal pull-up resistor
-  pinMode(BuzzerPin, OUTPUT);
-  digitalWrite(BuzzerPin, HIGH);
-  
+  pinMode(buzzerPin, OUTPUT);
+
   // Attach interrupt to sensor pin
-  attachInterrupt(digitalPinToInterrupt(sensorPin), pulseCount, FALLING);
+  attachInterrupt(digitalPinToInterrupt(sensorPin), pulseCounter, FALLING);
 }
 
 void loop() {
@@ -71,10 +71,9 @@ void loop() {
       // Turn off pumping motor if set point has been reached
       if (totalMilliLitres >= setPoint) {
         digitalWrite(pumpingMotor, LOW);
-        
+       digitalWrite(buzzerPin, HIGH);
         pumping = false;
       }
-      digitalWrite(BuzzerPin, HIGH);
 
       // Control the pumping motor based on the current flow rate
       if (flowRate >= targetFlowRate && !pumping) {
@@ -87,14 +86,6 @@ void loop() {
 
       // Reset pulse counter
       pulseCount = 0;
-      if (flowRate == 0 && !pumping) {
-        digitalWrite(BuzzerPin, HIGH);
-      } else {
-        digitalWrite (BuzzerPin, LOW);
-      }
-      }
-      
- 
 
       // Send data to virtual serial port
       Serial.print(totalMilliLitres);
@@ -102,9 +93,9 @@ void loop() {
       Serial.println(flowMilliLitres);
     }
   }
-
+}
 
 
 void pulseCounter() {
   pulseCount++;
-}
+}  
