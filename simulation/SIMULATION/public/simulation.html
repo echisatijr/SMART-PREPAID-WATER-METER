@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>SMART PREPAID WATER METER (SIIMULATION)</title>
+    <title>SMART PREPAID WATER METER (SIMULATION)</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -37,27 +37,58 @@
 
 </head>
 <body>
-    <div class="get-value">
-    <h1>SMART PREPAID WATER METER (SIMULATION)</h1>
-    <p>....................................................................................... </p>
-    <p>Total Litters  : <span id="reading-int"></span> (L)</p>
-    <p>Pipe Water Flow: <span id="reading-float"></span> (L/Min)</p>
-    <p>....................................................................................... </p>
-    </div>
-    <form >
-        <div class="mb-5 input-data">
-            <h5>Top Up Here</h5> <br>
-          <label for="userToken" class="form-label">Token</label>
-          <input type="text" class="form-control" id="userToken">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> <img src="./images/logo.png" alt=""> SMART PREPAID WATER METER</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon logo"> </span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item mr-right">
+          <a class="nav-link active" aria-current="page" href="./simulation.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./monitor.html">Monitor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./token-reading.html">Pay</a>
+        </li>
         
-      </form>
-
-
-
-
-
+      </ul>
+    </div>
+  </div>
+</nav>
+ <div class="container water-consume">
+<div class="alert alert-success" role="alert">
+   <h4 >WATER CONSUMPTION</h4>
+   <br>
+    <div class="row water-display">
+        <div class="col-md-6">
+            <h6>TOTAL WATER BOUGHT :</h6><span id="water-bought"></span>
+        </div>
+            <h6>TOTAL WATER REMAINING :</h6><span id="water-bought"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="./monitor.html">
+                <div class="alert alert-primary" role="alert">
+            Monitor
+</div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="./token-reading.html">
+                <div class="alert alert-primary" role="alert">
+  pay
+</div>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<script src="./application.js"></script>
 </body>
 </html>

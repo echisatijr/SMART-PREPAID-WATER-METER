@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <link rel="stylesheet" href="./styles/monitor.css">
+ <title>Monitor</title>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> <img src="./images/logo.png" alt=""> SMART PREPAID WATER METER</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon logo"> </span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item mr-right">
+          <a class="nav-link active" aria-current="page" href="./simulation.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./monitor.html">Monitor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./token-reading.html">Pay</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="monitor">
+ <div class="container">
+  <div class="alert alert-success" role="alert">
+   <h3>Monitor Water consumption</h3>
+    <br>
+    <h3>Total Litters  : <span id="reading-int"></span> (L)</h3>
+    <h3>Pipe Water Flow: <span id="reading-float"></span> (L/Min)</h3>
+  
+</div>
+<div class="container things-data">
+  <div class="row">
+   <div class="col-md-6 data">
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2137933/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Total+Volume&type=line"></iframe>
+
+   </div>
+   <div class="col-md-6 data">
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2137933/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Flow+Rate&type=line"></iframe>
+   </div>
+  </div>
+ 
+</div>
+ </div>
+</section>
+
+<script src="./application.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

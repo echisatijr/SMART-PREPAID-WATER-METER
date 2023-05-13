@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.water-consume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.water-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+
