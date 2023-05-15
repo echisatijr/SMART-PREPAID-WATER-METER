@@ -6,7 +6,6 @@
 
 #include <Arduino.h>
 #if defined(ESP32)
-//#include <WiFi.h>
 #elif defined(ESP8266)
 #include <ESP8266WiFi.h>
 #include <ThingSpeak.h>
@@ -49,8 +48,10 @@ unsigned int totalMilliLitres;
 float flowLitres;
 float totalLitres;
 
+//thingspeak
 const char* host = "api.thingspeak.com";
 const char* writeAPIKey = "25W83PHHY4AVXOOO";
+unsigned long chanID = 2146181;
 
 void IRAM_ATTR pulseCounter()
 {
@@ -70,8 +71,8 @@ bool signupOK = false;
 
 void setup() {
 
-
   lcd.begin();
+  lcd.clear();
   lcd.backlight();
 
   Serial.begin(115200);
@@ -203,6 +204,6 @@ void loop() {
     }
   }
 
- ThingSpeak.writeField(2146181, 1, flowRate, writeAPIKey);
- ThingSpeak.writeField(2146181, 2, totalLitres, writeAPIKey);
+ ThingSpeak.writeField(chanID, 1, flowRate, writeAPIKey);
+ ThingSpeak.writeField(chanID, 2, totalLitres, writeAPIKey);
 }
