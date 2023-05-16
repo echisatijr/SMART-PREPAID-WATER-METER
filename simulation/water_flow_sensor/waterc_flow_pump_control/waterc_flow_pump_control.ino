@@ -106,7 +106,8 @@ void loop() {
       // Send data to the virtual serial port
       Serial.print(totalMilliLitres);
       Serial.print(",");
-      Serial.println(flowMilliLitres);
+      Serial.print(flowMilliLitres);
+       Serial.print(",");
       Serial.println(currentValue);
       
     }
@@ -116,4 +117,3 @@ void loop() {
 void pulseCounter() {
   pulseCount++;
 }
-
