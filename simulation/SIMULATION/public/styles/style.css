@@ -1,20 +1,26 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: bisque; */
 }
 
-.water-consume {
+.urls{
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 10rem;
+  font-size: 20px !important;
+  color: black !important;
+  font-weight:600 ;
 }
 
-.water-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: red;
+.urls a{
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  
 }
+
 
 
