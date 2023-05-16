@@ -1,5 +1,6 @@
 import serial
 import requests
+import time
 # import pyrebase 
 
 
@@ -17,28 +18,33 @@ import requests
 
 # firebase = pyrebase.initiallise_app(config)
 # database = firebase.database()
-
-
 # Set up serial port
-ser = serial.Serial('COM1', 9600) # Replace 'COM3' with the appropriate port name on your system
+ser = serial.Serial('COM1', 9600)  # Replace 'COM1' with the appropriate port name on your system
 
 # ThingSpeak channel details
 channel_id = '2137933'
 write_api_key = 'KM46GR8219E7Z7ZL'
 
-while True:
-    # Read data from serial port
-    data = ser.readline().strip().decode('utf-8')
-    
-    # Split data into totalMilliLitres and flowMilliLitres
-    total_millilitres, flow_millilitres = map(int, data.split(','))
-    
-    # Send data to ThingSpeak
-    url = 'https://api.thingspeak.com/update'
-    params = {'api_key': write_api_key, 'field1': total_millilitres, 'field2': flow_millilitres}
-    response = requests.post(url, params=params)
-    
-    print('Data sent to ThingSpeak:', total_millilitres, flow_millilitres)
+# Write integer value 10 to the serial port
+# ser.write(b'10')
 
+while True:
+    # Read the results from the serial port
+    data = ser.readline().strip().decode('utf-8')
+    values = data.split(',')
+
+    if len(values) >= 2:
+        total_millilitres, flow_millilitres, current_volume = map(int, values[:3])
+    else:
+        print("Invalid data received from the serial port.")
+        continue
+
+    # Send data to ThingSpeak
+    url = f'https://api.thingspeak.com/update?api_key={write_api_key}&field1={total_millilitres}&field2={flow_millilitres}&field3={current_volume}'
+    response = requests.get(url)
+
+    print('Data sent to ThingSpeak:', total_millilitres, flow_millilitres, current_volume)
+
+    time.sleep(1)  # Wait for 1 second before reading the next data from the serial port
     # Sending data to the firebase
-w    # database.push({"meter/Volume":total_millilitres, "meter/flowRate":flow_millilitres})
+    # database.push({"meter/Volume":total_millilitres, "meter/flowRate":flow_millilitres})
