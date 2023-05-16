@@ -41,4 +41,4 @@ while True:
     print('Data sent to ThingSpeak:', total_millilitres, flow_millilitres)
 
     # Sending data to the firebase
-    # database.push({"meter/Volume":total_millilitres, "meter/flowRate":flow_millilitres})
+w    # database.push({"meter/Volume":total_millilitres, "meter/flowRate":flow_millilitres})
