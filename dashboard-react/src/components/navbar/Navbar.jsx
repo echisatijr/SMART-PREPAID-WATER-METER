@@ -5,33 +5,34 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import './navbar.css'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
     <nav className='nav'>
-      <a href='#' className='brand'>
+      <Link to='/' className='brand'>
         {' '}
         Smart Water Prepaid Meter
-      </a>
+      </Link>
       <ul className='nav__menu'>
         <li className='nav__items'>
-          <a href='#' className='nav__links'>
+          <Link to='/' className='nav__links'>
             <Grid item xs={1} className='icon'>
               <SignalCellularAltIcon sx={{ fontSize: 20 }} className='label' />
               dashboard
             </Grid>
-          </a>
+          </Link>
         </li>
         <li className='nav__items'>
-          <a href='#' className='nav__links'>
+          <Link to='/recharge' className='nav__links'>
             <Grid item xs={1} className='icon'>
               <PlaylistAddIcon sx={{ fontSize: 20 }} className='label' />
               Recharge
             </Grid>
-          </a>
+          </Link>
         </li>
         <li className='nav__items'>
-          <a href='#'>
+          <Link to='/notifications'>
             <Grid item xs={1} className='icon'>
               <NotificationsActiveIcon
                 sx={{ fontSize: 20 }}
@@ -39,14 +40,14 @@ function Navbar() {
               />
               Notifications
             </Grid>
-          </a>
+          </Link>
         </li>
       </ul>
-      <a href='#'>
+      <Link to='/profile'>
         <Grid item xs={1} className='icon'>
           <PersonOutlineIcon sx={{ fontSize: 20 }} className='label' /> Profile
         </Grid>
-      </a>
+      </Link>
     </nav>
   )
 }

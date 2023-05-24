@@ -1,14 +1,14 @@
 import React from 'react'
-import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-const Dashboard = () => {
+import '../combined.css'
+const Alert = () => {
   return (
     <div className='combined'>
       <div className='navbar-up'>
         <Navbar />
       </div>
-      <h2>This is the Dashboard component which is the home component</h2>
+      <h2>This is the Notification page</h2>
 
       <div className='navbar-bottom'>
         <BottomNavbar />
@@ -17,4 +17,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Alert

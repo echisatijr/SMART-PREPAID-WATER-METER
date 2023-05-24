@@ -6,43 +6,42 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 
 import Grid from '@mui/material/Grid'
 import './bottom.css'
+import { Link } from 'react-router-dom'
 export default function BottomNavbar() {
-  const [value, setValue] = React.useState(0)
-
   return (
     <div className='bottom__nav'>
       <ul className='bottom_ul'>
         <li>
-          <a href='#'>
+          <Link to='/'>
             <Grid item xs={1} className='icon'>
               <SignalCellularAltIcon sx={{ fontSize: 20 }} />
             </Grid>
             Dashboard
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='#'>
+          <Link to='/recharge'>
             <Grid item xs={1} className='icon'>
               <PlaylistAddIcon sx={{ fontSize: 20 }} />
             </Grid>
             Recharge
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='#'>
+          <Link to='/notifications'>
             <Grid item xs={1} className='icon'>
               <NotificationsActiveIcon sx={{ fontSize: 20 }} />
             </Grid>
             Notifications
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='#'>
+          <Link to='/profile'>
             <Grid item xs={1} className='icon'>
               <PersonOutlineIcon sx={{ fontSize: 20 }} />
             </Grid>
             Profile
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
