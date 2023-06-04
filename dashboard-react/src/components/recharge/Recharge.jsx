@@ -2,15 +2,17 @@ import React from 'react'
 import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-
+// import RechargeTab from './RechargeTab'
+import Try from './Try'
 const Recharge = () => {
   return (
     <div className='combined'>
       <div className='navbar-up'>
         <Navbar />
       </div>
-      <h2>This is the Recharge page</h2>
-
+      <div>
+        <Try />
+      </div>
       <div className='navbar-bottom'>
         <BottomNavbar />
       </div>

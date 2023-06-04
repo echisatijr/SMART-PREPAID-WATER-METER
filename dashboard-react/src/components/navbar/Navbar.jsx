@@ -5,49 +5,49 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import './navbar.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
   return (
     <nav className='nav'>
-      <Link to='/' className='brand'>
+      <NavLink to='/' className='brand'>
         {' '}
         Smart Water Prepaid Meter
-      </Link>
+      </NavLink>
       <ul className='nav__menu'>
         <li className='nav__items'>
-          <Link to='/' className='nav__links'>
+          <NavLink to='/' className='nav__links'>
             <Grid item xs={1} className='icon'>
               <SignalCellularAltIcon sx={{ fontSize: 20 }} className='label' />
               dashboard
             </Grid>
-          </Link>
+          </NavLink>
         </li>
         <li className='nav__items'>
-          <Link to='/recharge' className='nav__links'>
+          <NavLink to='/recharge' className='nav__links'>
             <Grid item xs={1} className='icon'>
-              <PlaylistAddIcon sx={{ fontSize: 20 }} className='label' />
+              {/* <PlaylistAddIcon sx={{ fontSize: 20 }} className='label' /> */}
               Recharge
             </Grid>
-          </Link>
+          </NavLink>
         </li>
         <li className='nav__items'>
-          <Link to='/notifications'>
+          <NavLink to='/notifications'>
             <Grid item xs={1} className='icon'>
-              <NotificationsActiveIcon
+              {/* <NotificationsActiveIcon
                 sx={{ fontSize: 20 }}
                 className='label'
-              />
+              /> */}
               Notifications
             </Grid>
-          </Link>
+          </NavLink>
         </li>
       </ul>
-      <Link to='/profile'>
+      <NavLink className='nav__items' to='/profile'>
         <Grid item xs={1} className='icon'>
           <PersonOutlineIcon sx={{ fontSize: 20 }} className='label' /> Profile
         </Grid>
-      </Link>
+      </NavLink>
     </nav>
   )
 }
