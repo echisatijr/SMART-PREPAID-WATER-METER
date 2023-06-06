@@ -56,7 +56,7 @@ export default function Control() {
     >
       <Box
         sx={{
-          width: 500,
+          width: 350,
           background: 'rgb(0, 33, 65);',
           borderRadius: 15,
         }}

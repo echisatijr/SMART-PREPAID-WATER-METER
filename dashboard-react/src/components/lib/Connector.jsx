@@ -9,7 +9,7 @@ export function sendValue(newValue) {
   console.log('Received value:', receivedValue)
 
   // Write data to the Firebase database
-  firebase.database().ref('meter/token').set({ key: '90' })
+  firebase.database().ref('meter/token').set({ key: '70' })
   firebase.database().ref('meter/control').set({ key: receivedValue })
 }
 
