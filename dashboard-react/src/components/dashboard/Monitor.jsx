@@ -117,7 +117,7 @@ const Monitor = ({ data }) => {
             >
               <CardContent>
                 <Typography
-                  variant='h6'
+                  variant='h5'
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,

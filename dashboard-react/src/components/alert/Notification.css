@@ -1,0 +1,12 @@
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 30px;
+
+  background-color: black;
+}
+
+.alert-not {
+  font-family: monospace !important;
+  font-size: 25px;
+}

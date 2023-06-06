@@ -3,12 +3,11 @@ import Box from '@mui/material/Box'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
-import Typography from '@mui/material/Typography'
 import { sendValue } from '../lib/Connector'
 
 export default function Control() {
   const [loading, setLoading] = React.useState(false)
-  const [query, setQuery] = React.useState('idle')
+  // const [query, setQuery] = React.useState('idle')
   const timerRef = React.useRef()
 
   React.useEffect(
@@ -28,21 +27,21 @@ export default function Control() {
     })
   }
 
-  const handleClickQuery = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current)
-    }
+  // const handleClickQuery = () => {
+  //   if (timerRef.current) {
+  //     clearTimeout(timerRef.current)
+  //   }
 
-    if (query !== 'idle') {
-      setQuery('idle')
-      return
-    }
+  //   if (query !== 'idle') {
+  //     setQuery('idle')
+  //     return
+  //   }
 
-    setQuery('progress')
-    timerRef.current = window.setTimeout(() => {
-      setQuery('success')
-    }, 2000)
-  }
+  //   setQuery('progress')
+  //   timerRef.current = window.setTimeout(() => {
+  //     setQuery('success')
+  //   }, 2000)
+  // }
 
   return (
     <Box
@@ -103,22 +102,3 @@ export default function Control() {
     </Box>
   )
 }
-
-// ;<Box sx={{ height: 40 }}>
-//   {query === 'success' ? (
-//     <Typography>Success!</Typography>
-//   ) : (
-//     <Fade
-//       in={query === 'progress'}
-//       style={{
-//         transitionDelay: query === 'progress' ? '800ms' : '0ms',
-//       }}
-//       unmountOnExit
-//     >
-//       <CircularProgress />
-//     </Fade>
-//   )}
-// </Box>
-// <Button onClick={handleClickQuery} sx={{ m: 2 }}>
-//         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
-//       </Button>

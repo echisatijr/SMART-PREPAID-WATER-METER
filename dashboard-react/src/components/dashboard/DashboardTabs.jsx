@@ -20,7 +20,8 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component='div'>{children}</Typography>{' '}
+          {/* Wrap children inside Typography component */}
         </Box>
       )}
     </div>
@@ -54,27 +55,15 @@ export default function BasicTabs() {
           value={value}
           onChange={handleChange}
           aria-label='basic tabs example'
-          centered='true'
+          centered={true}
           sx={{
             fontSize: 15,
             backgroundColor: '#2d4b5e',
             color: '#000',
           }}
         >
-          <Tab
-            sx={{
-              fontSize: 15,
-            }}
-            label='Monitor'
-            {...a11yProps(0)}
-          />
-          <Tab
-            sx={{
-              fontSize: 15,
-            }}
-            label='COntrol'
-            {...a11yProps(1)}
-          />
+          <Tab sx={{ fontSize: 15 }} label='Monitor' {...a11yProps(0)} />
+          <Tab sx={{ fontSize: 15 }} label='COntrol' {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
