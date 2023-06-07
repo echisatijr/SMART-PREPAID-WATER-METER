@@ -1,0 +1,22 @@
+{
+  "short_name": "SPWM",
+  "name": "Smart Prepaid Water Meter",
+  "icons": [
+    {
+      "src": "./images/logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#003341",
+  "background_color": "#329da8",
+  "description": "A smart prepaid water meter app."
+}
