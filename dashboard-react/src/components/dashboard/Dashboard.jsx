@@ -2,7 +2,7 @@ import React from 'react'
 import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-import DashboardTabs from './DashboardTabs'
+import Connector from '../lib/Connector'
 
 const Dashboard = () => {
   return (
@@ -11,7 +11,7 @@ const Dashboard = () => {
         <Navbar />
       </div>
       <div className='dashboard-tabs'>
-        <DashboardTabs />
+        <Connector />
       </div>
       <div className='navbar-bottom'>
         <BottomNavbar />

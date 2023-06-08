@@ -51,6 +51,9 @@ a {
   background: rgb(204, 204, 204);
   transition: 0.3s ease-in;
 }
+.icon-data {
+  margin-left: 10px;
+}
 
 @media screen and (max-width: 768px) {
   .nav__toggler {
@@ -78,6 +81,13 @@ a {
 .nav__items {
   position: relative;
 }
+.row-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
+
 a.active::after {
   content: '';
   height: 3px;

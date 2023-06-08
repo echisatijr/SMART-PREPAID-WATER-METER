@@ -2,13 +2,13 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD74CRTsdHhEfTa1nju1xQ2N3VH41bi9AI',
-  authDomain: 'swps-3c63d.firebaseapp.com',
-  databaseURL: 'https://swps-3c63d-default-rtdb.firebaseio.com',
-  projectId: 'swps-3c63d',
-  storageBucket: 'swps-3c63d.appspot.com',
-  messagingSenderId: '880271184821',
-  appId: '1:880271184821:web:7052900ec0c19182133ffc',
+  apiKey: 'AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA',
+  authDomain: 'meter-123.firebaseapp.com',
+  databaseURL: 'https://meter-123-default-rtdb.firebaseio.com',
+  projectId: 'meter-123',
+  storageBucket: 'meter-123.appspot.com',
+  messagingSenderId: '71607014013',
+  appId: '1:71607014013:web:ad4c775af3dbacc95b9714',
 }
 if (!firebase.apps.length) {
   // Initialize Firebase

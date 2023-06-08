@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Recharge from './components/recharge/Recharge'
 import Notifications from './components/alert/Notifications'
 import Profile from './components/profile/Profile'
+import Control from './components/dashboard/Control'
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/recharge' element={<Recharge />} />
-        <Route path='/notifications' element={<Notifications />} />
+        <Route path='/control' element={<Control />} />
+        <Route path='/notification' element={<Notifications />} />
         <Route path='/profile' element={<Profile />} />
         <Route />
       </Routes>

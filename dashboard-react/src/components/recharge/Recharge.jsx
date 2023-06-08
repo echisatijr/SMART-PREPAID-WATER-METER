@@ -2,8 +2,8 @@ import React from 'react'
 import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-// import RechargeTab from './RechargeTab'
-import Try from './Try'
+import RechargeTab from './RechargeTab'
+// import Try from './Try'
 const Recharge = () => {
   return (
     <div className='combined'>
@@ -11,7 +11,7 @@ const Recharge = () => {
         <Navbar />
       </div>
       <div>
-        <Try />
+        <RechargeTab />
       </div>
       <div className='navbar-bottom'>
         <BottomNavbar />

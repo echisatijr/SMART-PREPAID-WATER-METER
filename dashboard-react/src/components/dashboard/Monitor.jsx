@@ -4,7 +4,7 @@ import React from 'react'
 import Iframe from 'react-iframe'
 
 const Monitor = ({ data }) => {
-  const { total_consumption, flow_rate, current_volume } = data
+  const { total_consumption, flowRate, volume } = data
 
   return (
     <Box>
@@ -51,8 +51,7 @@ const Monitor = ({ data }) => {
                     fontSize: 20,
                   }}
                 >
-                  Total consumption :{' '}
-                  {JSON.stringify(total_consumption, null, 2)}
+                  Total consumption : {JSON.stringify(volume, null, 2)}
                 </Typography>
               </CardContent>
             </Card>
@@ -76,7 +75,7 @@ const Monitor = ({ data }) => {
                   }}
                 >
                   Total Remaining water :{' '}
-                  {JSON.stringify(current_volume, null, 2)}
+                  {JSON.stringify(total_consumption, null, 2)}
                 </Typography>
               </CardContent>
             </Card>
@@ -99,7 +98,7 @@ const Monitor = ({ data }) => {
                     fontSize: 20,
                   }}
                 >
-                  Current flow rate : {JSON.stringify(flow_rate, null, 2)}
+                  flow rate : {JSON.stringify(flowRate, null, 2)}
                 </Typography>
               </CardContent>
             </Card>
@@ -140,7 +139,7 @@ const Monitor = ({ data }) => {
                   }}
                 >
                   <Iframe
-                    url='https://thingspeak.com/channels/2137933/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Total+Volume&type=line'
+                    url='https://thingspeak.com/channels/2146181/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15'
                     width='450'
                     height='270'
                     frameBorder='1'
@@ -183,7 +182,7 @@ const Monitor = ({ data }) => {
                   }}
                 >
                   <Iframe
-                    url='https://thingspeak.com/channels/2137933/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Flow+Rate&type=line'
+                    url='https://thingspeak.com/channels/2146181/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Water+Flow&type=line'
                     width='450'
                     height='270'
                     frameBorder='1'

@@ -22,6 +22,7 @@ const Connector = () => {
     dataRef.on('value', (snapshot) => {
       const newData = snapshot.val()
       setData(newData)
+      console.log(newData)
     })
 
     // Clean up the listener when component unmounts

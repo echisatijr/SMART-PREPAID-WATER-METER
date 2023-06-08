@@ -28,19 +28,11 @@ export default function BottomNavbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink className='li__tag' to='/notifications'>
+          <NavLink className='li__tag' to='/control'>
             <Grid item xs={1} className='icon'>
               <NotificationsActiveIcon sx={{ fontSize: 20 }} />
             </Grid>
-            Notifications
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className='li__tag' to='/profile'>
-            <Grid item xs={1} className='icon'>
-              <PersonOutlineIcon sx={{ fontSize: 20 }} />
-            </Grid>
-            Profile
+            Control
           </NavLink>
         </li>
       </ul>
