@@ -21,7 +21,7 @@ const AppBarNav = () => {
               aria-label='show 17 new notifications'
               color='inherit'
             >
-              <Badge color='error'>
+              <Badge badgeContent={17} color='error'>
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -32,7 +32,7 @@ const AppBarNav = () => {
               aria-label='show 17 new notifications'
               color='inherit'
             >
-              <Badge badgeContent={17} color='error'>
+              <Badge color='error'>
                 <PersonIcon />
               </Badge>
             </IconButton>
