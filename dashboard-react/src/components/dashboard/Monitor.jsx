@@ -2,7 +2,7 @@ import { CardContent, Card, Typography, Box } from '@mui/material'
 
 import React from 'react'
 import Iframe from 'react-iframe'
-
+import './Monitor.css'
 const Monitor = ({ data }) => {
   const { total_consumption, flowRate, volume } = data
 
@@ -10,10 +10,13 @@ const Monitor = ({ data }) => {
     <Box>
       <div className='container'>
         <div className='row'>
-          <div className='col-md-3'>
+          <div className='col-3'>
             <Card
               sx={{
-                margin: 2,
+                '@media (max-width:600px)': {
+                  width: '100%',
+                },
+                margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}
@@ -26,17 +29,23 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                   }}
                 >
-                  The Total Water Bought : <span id='water-bought'></span>
+                  Water purchased : <span id='water-bought'></span>
                 </Typography>
               </CardContent>
             </Card>
           </div>
-          <div className='col-md-3'>
+          <div className='col-3'>
             <Card
               sx={{
-                margin: 2,
+                '@media (max-width:600px)': {
+                  width: '100%',
+                },
+                margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}
@@ -49,17 +58,23 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                   }}
                 >
-                  Total consumption : {JSON.stringify(volume, null, 2)}
+                  Water used : {JSON.stringify(volume, null, 2)}
                 </Typography>
               </CardContent>
             </Card>
           </div>
-          <div className='col-md-3'>
+          <div className='col-3'>
             <Card
               sx={{
-                margin: 2,
+                '@media (max-width:600px)': {
+                  width: '100%',
+                },
+                margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}
@@ -72,18 +87,23 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                   }}
                 >
-                  Total Remaining water :{' '}
-                  {JSON.stringify(total_consumption, null, 2)}
+                  Remaining water : {JSON.stringify(total_consumption, null, 2)}
                 </Typography>
               </CardContent>
             </Card>
           </div>
-          <div className='col-md-3'>
+          <div className='col-3'>
             <Card
               sx={{
-                margin: 2,
+                '@media (max-width:600px)': {
+                  width: '90%',
+                },
+                marginTop: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}
@@ -96,6 +116,9 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                   }}
                 >
                   flow rate : {JSON.stringify(flowRate, null, 2)}
@@ -105,11 +128,11 @@ const Monitor = ({ data }) => {
           </div>
         </div>
 
-        <div className='row'>
+        <div className='row things'>
           <div className='col-md-6'>
             <Card
               sx={{
-                margin: 2,
+                margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}
@@ -120,6 +143,9 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -149,10 +175,10 @@ const Monitor = ({ data }) => {
               </CardContent>
             </Card>
           </div>
-          <div className='col-md-6'>
+          <div className='col-md-6 '>
             <Card
               sx={{
-                margin: 2,
+                margin: 1,
                 backgroundColor: 'rgb(0, 33, 65)',
                 color: '#fff',
               }}
@@ -163,6 +189,9 @@ const Monitor = ({ data }) => {
                   sx={{
                     fontFamily: 'monospace',
                     fontSize: 20,
+                    '@media (max-width:600px)': {
+                      fontSize: 10,
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',

@@ -5,11 +5,15 @@ import Alert from '@mui/material/Alert'
 import Stack from '@mui/material/Stack'
 import '../combined.css'
 import './Notification.css'
+import AppBarNav from '../navbar/AppBar'
 const Notification = () => {
   return (
     <div className='combined'>
       <div className='navbar-up'>
         <Navbar />
+      </div>
+      <div className='small-nav'>
+        <AppBarNav />
       </div>
       <div className='container alert'>
         <div className='row'>

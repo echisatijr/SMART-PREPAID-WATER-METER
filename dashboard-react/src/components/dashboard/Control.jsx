@@ -7,6 +7,7 @@ import { sendValue } from '../lib/Connector'
 import Navbar from '../navbar/Navbar'
 import BottomNavbar from '../navbar/BottomNavbar'
 import '../combined.css'
+import AppBarNav from '../navbar/AppBar'
 
 export default function Control() {
   const [loading, setLoading] = React.useState(false)
@@ -32,6 +33,9 @@ export default function Control() {
     <div className='combined'>
       <div className='navbar-up'>
         <Navbar />
+      </div>
+      <div className='small-nav'>
+        <AppBarNav />
       </div>
       <div className='dashboard-tabs'>
         <Box

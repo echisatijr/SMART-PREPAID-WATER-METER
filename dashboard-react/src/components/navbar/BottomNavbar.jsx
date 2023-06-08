@@ -2,7 +2,6 @@ import React from 'react'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 
 import Grid from '@mui/material/Grid'
 import './bottom.css'
