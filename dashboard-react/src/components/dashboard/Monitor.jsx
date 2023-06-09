@@ -16,12 +16,12 @@ const Monitor = ({ data }) => {
       }}
     >
       <div className='container'>
-        <div className='row '>
-          <div className='col-3'>
+        <div className='row  data'>
+          <div className='col-3 data_col'>
             <Card
               sx={{
                 '@media (max-width:600px)': {
-                  width: '100%',
+                  width: '95%',
                 },
                 margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
@@ -41,7 +41,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  Water purchased : {token.key}
+                  purchased Water : {token.key}
                 </Typography>
               </CardContent>
             </Card>
@@ -50,7 +50,7 @@ const Monitor = ({ data }) => {
             <Card
               sx={{
                 '@media (max-width:600px)': {
-                  width: '100%',
+                  width: '95%',
                 },
                 margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
@@ -79,7 +79,7 @@ const Monitor = ({ data }) => {
             <Card
               sx={{
                 '@media (max-width:600px)': {
-                  width: '100%',
+                  width: '90%',
                 },
                 margin: 1,
                 backgroundColor: 'rgb(0, 33, 65);',
@@ -110,7 +110,7 @@ const Monitor = ({ data }) => {
                 '@media (max-width:600px)': {
                   width: '90%',
                 },
-                marginTop: 1,
+
                 backgroundColor: 'rgb(0, 33, 65);',
                 color: '#fff',
               }}

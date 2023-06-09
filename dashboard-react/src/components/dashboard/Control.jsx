@@ -8,10 +8,10 @@ import Navbar from '../navbar/Navbar'
 import BottomNavbar from '../navbar/BottomNavbar'
 import '../combined.css'
 import AppBarNav from '../navbar/AppBar'
-
+import { AppContext } from '../lib/AppState'
 export default function Control() {
-  const [loading, setLoading] = React.useState(false)
-  // const [query, setQuery] = React.useState('idle')
+  const { loading, setLoading } = React.useContext(AppContext)
+
   const timerRef = React.useRef()
 
   React.useEffect(
