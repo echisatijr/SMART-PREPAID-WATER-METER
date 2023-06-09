@@ -11,30 +11,30 @@
 #include <ThingSpeak.h>
 #endif
 #include <Firebase_ESP_Client.h>
+//#include <FirebaseArduino.h>
 
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+//#include "addons/TokenHelper.h"
+//#include "addons/RTDBHelper.h"
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-//Provide the token generation process info.
-#include "addons/TokenHelper.h"
-//Provide the RTDB payload printing info and other helper functions.
-#include "addons/RTDBHelper.h"
-
 //Insert your network credentials
-#define WIFI_SSID "RussiaN"
-#define WIFI_PASSWORD "mlakalakanji1"
+#define WIFI_SSID "iPhone"
+#define WIFI_PASSWORD "nafe1739"
 
 //Firebase project API Key, RTDB URLefine the RTDB URL
 #define API_KEY "AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA"
 #define DATABASE_URL "https://meter-123-default-rtdb.firebaseio.com"
 
-//defining some pins
+//Defining some pins
 #define LED_BUILTIN 16
 #define SENSOR  D4
+#define relay D5
 
-//define some variables
+//Define some variables
 long currentMillis = 0;
 long previousMillis = 0;
 int interval = 1000;
@@ -47,18 +47,16 @@ unsigned long flowMilliLitres;
 unsigned int totalMilliLitres;
 float flowLitres;
 float totalLitres;
+WiFiClient client;
 
-//thingspeak
+//Thingspeak
 const char* host = "api.thingspeak.com";
 const char* writeAPIKey = "25W83PHHY4AVXOOO";
 unsigned long chanID = 2146181;
 
-void IRAM_ATTR pulseCounter()
-{
+void IRAM_ATTR pulseCounter(){
   pulseCount++;
 }
-
-WiFiClient client;
 
 //Firebase Data object
 FirebaseData fbdo;
@@ -80,6 +78,7 @@ void setup() {
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(SENSOR, INPUT_PULLUP);
+  pinMode(relay, OUTPUT);
 
   pulseCount = 0;
   flowRate = 0.0;
@@ -91,16 +90,31 @@ void setup() {
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to Wi-Fi");
+  lcd.setCursor(0, 0);
+  lcd.print("Conectng to WiFi");
 
+  int i = 0;
   while (WiFi.status() != WL_CONNECTED) {
+    lcd.setCursor(i, 1);
+    lcd.print(".");
+    i = i + 1;
+    
     Serial.print(".");
-    delay(300);
+    delay(1000);
   }
 
+ 
   Serial.println();
   Serial.print("Connected with IP: ");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Connected to");
   Serial.println(WiFi.localIP());
+  lcd.setCursor(0, 1);
+  delay(1000);
+  lcd.print(WiFi.localIP());
   Serial.println();
+  
 
   //Assigning the api key, the RTDB URL
   config.api_key = API_KEY;
@@ -124,9 +138,15 @@ void setup() {
 
 void loop() {
 
+  lcd.clear();
   //Printing to the LCD
   lcd.setCursor(0, 0);
   lcd.print("SMART WATR METER");
+
+  digitalWrite(relay, LOW);
+  delay(1000);
+  digitalWrite(relay, HIGH);
+  delay(1000);
 
   currentMillis = millis();
   if (currentMillis - previousMillis > interval)
@@ -140,14 +160,14 @@ void loop() {
       that to scale the output. We also apply the calibrationFactor to scale the output
       based on the number of pulses per second per units of measure (litres/minute in
       this case) coming from the sensor. */
-    flowRate = ((1000.0 / (millis() - previousMillis)) * pulse1Sec) / calibrationFactor;
+    flowRate = (((1000.0 / (millis() - previousMillis)) * pulse1Sec) / calibrationFactor);
     previousMillis = millis();
 
     /* Divide the flow rate in litres/minute by 60 to determine how many litres have
       passed through the sensor in this 1 second interval, then multiply by 1000 to
       convert to millilitres. */
-    flowMilliLitres = (flowRate / 60) * 1000;
-    flowLitres = (flowRate / 60);
+    flowMilliLitres = ((flowRate / 60) * 1000)*2;
+    flowLitres = (flowRate / 60)*2;
 
     //Adding the millilitres passed in this second to the cumulative total
     totalMilliLitres += flowMilliLitres;
@@ -203,6 +223,11 @@ void loop() {
       Serial.println("REASON: " + fbdo.errorReason());
     }
   }
+
+  if (totalLitres >= 5){
+    digitalWrite(relay, HIGH);
+  }
+
 
  ThingSpeak.writeField(chanID, 1, flowRate, writeAPIKey);
  ThingSpeak.writeField(chanID, 2, totalLitres, writeAPIKey);
