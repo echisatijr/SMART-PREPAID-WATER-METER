@@ -4,6 +4,7 @@ import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
 import AppBarNav from '../navbar/AppBar'
+import RechargeApp from './RechargeApp'
 const Profile = () => {
   return (
     <div className='combined'>
@@ -13,7 +14,9 @@ const Profile = () => {
       <div className='small-nav'>
         <AppBarNav />
       </div>
-      <h2>Hello this is the profile page</h2>
+      <div className='recharge'>
+        <RechargeApp />
+      </div>
 
       <div className='navbar-bottom'>
         <BottomNavbar />

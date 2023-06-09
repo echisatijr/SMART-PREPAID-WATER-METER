@@ -4,12 +4,19 @@ import React from 'react'
 import Iframe from 'react-iframe'
 import './Monitor.css'
 const Monitor = ({ data }) => {
-  const { total_consumption, flowRate, volume } = data
+  const { flowRate, volume, token, remainingWater } = data
 
   return (
-    <Box>
+    <Box
+      sx={{
+        marginTop: 6,
+        '@media (max-width:600px)': {
+          marginTop: 1,
+        },
+      }}
+    >
       <div className='container'>
-        <div className='row'>
+        <div className='row '>
           <div className='col-3'>
             <Card
               sx={{
@@ -34,7 +41,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  Water purchased : <span id='water-bought'></span>
+                  Water purchased : {token.key}
                 </Typography>
               </CardContent>
             </Card>
@@ -63,7 +70,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  Water used : {JSON.stringify(volume, null, 2)}
+                  Water used : {volume}
                 </Typography>
               </CardContent>
             </Card>
@@ -92,7 +99,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  Remaining water : {JSON.stringify(total_consumption, null, 2)}
+                  Remaining water : {remainingWater}
                 </Typography>
               </CardContent>
             </Card>
@@ -121,7 +128,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  flow rate : {JSON.stringify(flowRate, null, 2)}
+                  flow rate : {flowRate}
                 </Typography>
               </CardContent>
             </Card>

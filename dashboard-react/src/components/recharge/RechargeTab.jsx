@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './recharge.css'
 import { TextField } from '@mui/material'
 import OtherComponent from './OtherComponent'
-
+import { sendRecharge } from '../lib/Connector'
 const Try = () => {
   const [token, setToken] = useState('')
   const [previousToken, setPreviousToken] = useState('')
@@ -11,33 +11,23 @@ const Try = () => {
 
   const handleChange = (event) => {
     const { value } = event.target
-    if (/^[01]{0,4}$/.test(value)) {
-      setToken(value)
-      setError(false)
-      setSuccess(false)
-    } else {
-      setError(true)
-      setSuccess(false)
-    }
+    setToken(value)
+    setError(false)
+    setSuccess(false)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (/^[01]{4}$/.test(token)) {
-      // Check if the current token is the same as the previous token
-      if (token === previousToken) {
-        setError(true)
-        setSuccess(false)
-      } else {
-        setToken('') // Clear the token input field
-        setPreviousToken(token) // Store the current token as the previous token
-        setSuccess(true) // Set success state to true
-        setError(false) // Set error state to false
-        let integerValue = parseInt(token, 2) // Convert token to an integer
-        // Pass integerValue as a prop to OtherComponent
-        console.log('integer value ', integerValue)
-        ;<OtherComponent integerValue={integerValue} />
-      }
+    if (token !== previousToken) {
+      setToken('') // Clear the token input field
+      setPreviousToken(token) // Store the current token as the previous token
+      setSuccess(true) // Set success state to true
+      setError(false) // Set error state to false
+      let integerValue = parseFloat(token) // Convert token to an integer
+      // Pass integerValue as a prop to OtherComponent
+      console.log('integer value ', integerValue)
+      ;<OtherComponent integerValue={integerValue} />
+      sendRecharge(integerValue)
     } else {
       setError(true)
       setSuccess(false)
@@ -60,18 +50,18 @@ const Try = () => {
             }}
             error={error}
             helperText={error && !success ? 'Invalid token!!' : ''}
-            label='Enter Token'
-            placeholder='Enter token'
+            label='Recharge'
+            placeholder='Enter recharge number'
             value={token}
             onChange={handleChange}
           />
         </div>
         <div className='success-label'>
-          {success && <p>Token successfully entered</p>}
+          {success && <p>You have successfully recharged</p>}
         </div>
         <div className='btn-field'>
           <button type='submit' className='btn btn-primary' id='submit-btn'>
-            Submit Token
+            Recharge
           </button>
         </div>
       </form>

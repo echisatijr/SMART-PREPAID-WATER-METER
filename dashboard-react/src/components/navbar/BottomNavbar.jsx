@@ -1,8 +1,7 @@
 import React from 'react'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
-
+import SettingsIcon from '@mui/icons-material/Settings'
 import Grid from '@mui/material/Grid'
 import './bottom.css'
 import { NavLink } from 'react-router-dom'
@@ -29,7 +28,7 @@ export default function BottomNavbar() {
         <li>
           <NavLink className='li__tag' to='/control'>
             <Grid item xs={1} className='icon'>
-              <NotificationsActiveIcon sx={{ fontSize: 20 }} />
+              <SettingsIcon sx={{ fontSize: 20 }} />
             </Grid>
             Control
           </NavLink>

@@ -50,3 +50,16 @@ a.active::after {
   transition: all 0.2s;
   pointer-events: none;
 }
+/* ************************App Bar******************************** */
+
+.app-bar {
+  background: rgb(35, 71, 108);
+  height: 62px;
+  margin-bottom: 6px;
+}
+
+.nav-up {
+  background-color: rgb(0, 33, 65) !important;
+  border-radius: 12px;
+  height: 60px;
+}

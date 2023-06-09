@@ -3,14 +3,21 @@ import firebase from './firebase'
 import Monitor from '../dashboard/Monitor'
 
 let receivedValue = null // Create a variable to store the received value
+let recievedRecharge = null
 
 export function sendValue(newValue) {
   receivedValue = newValue // Update the received value
   console.log('Received value:', receivedValue)
 
   // Write data to the Firebase database
-  firebase.database().ref('meter/token').set({ key: '70' })
-  firebase.database().ref('meter/control').set({ key: receivedValue })
+  firebase.database().ref('meter/signal').set({ key: receivedValue })
+}
+export function sendRecharge(recharge) {
+  recievedRecharge = recharge
+  console.log('recharged', recievedRecharge)
+
+  // Write data to the Firebase database
+  firebase.database().ref('meter/token').set({ key: recievedRecharge })
 }
 
 const Connector = () => {
