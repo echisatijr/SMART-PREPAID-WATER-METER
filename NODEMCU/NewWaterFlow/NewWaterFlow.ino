@@ -157,7 +157,7 @@ void loop() {
     pulseCount = 0;
 
   /* 
-    Because this loop may not complete in exactly 1 second intervals we calculate
+    this loop may not complete in exactly 1 second intervals so we calculate
     the number of milliseconds that have passed since the last execution and use
     that to scale the output. We also apply the calibrationFactor to scale the output
     based on the number of pulses per second per units of measure (litres/minute in
