@@ -3,6 +3,7 @@ import './recharge.css'
 import { TextField } from '@mui/material'
 import OtherComponent from './OtherComponent'
 import { sendRecharge } from '../lib/Connector'
+
 const Try = () => {
   const [token, setToken] = useState('')
   const [previousToken, setPreviousToken] = useState('')
@@ -11,23 +12,36 @@ const Try = () => {
 
   const handleChange = (event) => {
     const { value } = event.target
-    setToken(value)
-    setError(false)
-    setSuccess(false)
+    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+      // Check if the value contains only digits and at most one dot
+      const dotCount = (value.match(/\./g) || []).length
+      if (dotCount <= 1) {
+        setToken(value)
+        setError(false)
+        setSuccess(false)
+      } else {
+        setError(true)
+      }
+    } else {
+      setError(true)
+    }
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (token !== previousToken) {
-      setToken('') // Clear the token input field
-      setPreviousToken(token) // Store the current token as the previous token
-      setSuccess(true) // Set success state to true
-      setError(false) // Set error state to false
-      let integerValue = parseFloat(token) // Convert token to an integer
-      // Pass integerValue as a prop to OtherComponent
-      console.log('integer value ', integerValue)
-      ;<OtherComponent integerValue={integerValue} />
-      sendRecharge(integerValue)
+      setToken('')
+      setPreviousToken(token)
+      setSuccess(true)
+      setError(false)
+      let floatValue = parseFloat(token)
+      console.log('float value: ', floatValue)
+      ;<OtherComponent floatValue={floatValue} />
+      sendRecharge(floatValue)
+
+      setTimeout(() => {
+        setSuccess(false)
+      }, 2000)
     } else {
       setError(true)
       setSuccess(false)
@@ -60,7 +74,12 @@ const Try = () => {
           {success && <p>You have successfully recharged</p>}
         </div>
         <div className='btn-field'>
-          <button type='submit' className='btn btn-primary' id='submit-btn'>
+          <button
+            type='submit'
+            className='btn btn-primary'
+            id='submit-btn'
+            disabled={!token}
+          >
             Recharge
           </button>
         </div>

@@ -41,7 +41,7 @@ const Monitor = ({ data }) => {
                     },
                   }}
                 >
-                  purchased Water : {token.key}
+                  Water purchased : {token.key}
                 </Typography>
               </CardContent>
             </Card>
@@ -108,7 +108,7 @@ const Monitor = ({ data }) => {
             <Card
               sx={{
                 '@media (max-width:600px)': {
-                  width: '90%',
+                  width: '85%',
                 },
 
                 backgroundColor: 'rgb(0, 33, 65);',

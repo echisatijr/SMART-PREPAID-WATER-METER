@@ -40,7 +40,7 @@ export default function Control() {
       <div className='dashboard-tabs'>
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 12,
             height: 250,
             display: 'flex',
             flexDirection: 'column',

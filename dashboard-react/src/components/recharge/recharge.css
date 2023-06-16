@@ -12,7 +12,7 @@ body {
 .form-group {
   margin-top: 20rem;
   background-color: rgb(145, 149, 153);
-  width: 400px !important;
+  width: 350px !important;
   border-radius: 20px;
   height: 20rem;
 }
@@ -37,6 +37,7 @@ body {
   font-size: 16px;
   border: none;
   color: #fff;
+  border-radius: 10px;
 }
 .success-label {
   display: flex;

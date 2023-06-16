@@ -6,11 +6,12 @@ import Notifications from './components/alert/Notifications'
 import Profile from './components/profile/Profile'
 import Control from './components/dashboard/Control'
 import { AppProvider } from './components/lib/AppState'
-
+import Login from './components/lib/Login'
 const App = () => {
   return (
     <AppProvider>
-      <div className='App'>
+      <Login />
+      {/* <div className='App'>
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/recharge' element={<Recharge />} />
@@ -19,7 +20,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route />
         </Routes>
-      </div>
+      </div> */}
     </AppProvider>
   )
 }
