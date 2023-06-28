@@ -11,7 +11,7 @@ const Notification = ({ data }) => {
   const calculateRemainingWaterPercentage = (tok) => {
     // Assuming the total water capacity is 1000 mL
 
-    const volume = volumeWater
+    const volume = 1.5
     const remainingWaterPercentage = (volume / tok) * 100
     if (remainingWaterPercentage != 'NaN') {
       return remainingWaterPercentage.toFixed(0) // Round the percentage to two decimal places
@@ -81,13 +81,20 @@ const Notification = ({ data }) => {
   return (
     <div className='noti'>
       <div className='container alert'>
-        <div className='row notification'>
-          <Stack sx={{ width: '80%', marginTop: 6 }} spacing={2}>
+        <div
+          className='row notification'
+          style={{
+            flexDirection: 'column', // Add this line to stack components vertically
+          }}
+        >
+          <Stack sx={{ width: '100%' }} spacing={2}>
             {values.map((value, index) => (
               <Alert className='alert-not' severity='success' key={index}>
                 You have successfully purchased {value} mL
               </Alert>
             ))}
+          </Stack>
+          <Stack sx={{ width: '100%' }} spacing={2}>
             {['50', '70', '90', '100'].includes(remainingWaterPercentage) && (
               <Alert className='alert-not' severity='warning'>
                 You have used {remainingWaterPercentage} % of your water units
