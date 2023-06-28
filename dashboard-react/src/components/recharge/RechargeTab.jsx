@@ -84,6 +84,7 @@ const Try = () => {
           </button>
         </div>
       </form>
+      {/* <Notifications /> */}
     </section>
   )
 }

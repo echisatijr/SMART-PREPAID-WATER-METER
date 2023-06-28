@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Dashboard from './components/dashboard/Dashboard'
 import Recharge from './components/recharge/Recharge'
 import Notifications from './components/alert/Notifications'

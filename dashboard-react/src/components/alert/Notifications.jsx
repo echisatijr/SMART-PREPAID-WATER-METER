@@ -1,12 +1,11 @@
 import React from 'react'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
 import '../combined.css'
-import './Notification.css'
 import AppBarNav from '../navbar/AppBar'
-const Notification = () => {
+import NotConnector from '../lib/NotConnector'
+const Notifications = ({ data }) => {
+  console.log('notifaction ', data)
   return (
     <div className='combined'>
       <div className='navbar-up'>
@@ -16,16 +15,7 @@ const Notification = () => {
         <AppBarNav />
       </div>
       <div className='container alert'>
-        <div className='row'>
-          <Stack sx={{ width: '100%', marginTop: 6 }} spacing={2}>
-            <Alert className='alert-not' severity='info'>
-              You have used 50% of your water units
-            </Alert>
-            <Alert className='alert-not' severity='success'>
-              You have successfully purchased 40 mL
-            </Alert>
-          </Stack>
-        </div>
+        <NotConnector />
       </div>
 
       <div className='navbar-bottom'>
@@ -35,4 +25,4 @@ const Notification = () => {
   )
 }
 
-export default Notification
+export default Notifications

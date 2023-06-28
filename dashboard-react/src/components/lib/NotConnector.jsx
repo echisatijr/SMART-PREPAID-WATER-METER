@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
-import Monitor from '../dashboard/Monitor'
-
-let receivedValue = null
-let receivedRecharge = null
+import Notification from '../alert/Notification'
 
 export function sendValue(newValue) {
-  receivedValue = newValue
-  console.log('Received value:', receivedValue)
-
-  firebase.database().ref('meter/signal').set({ key: receivedValue })
+  firebase.database().ref('meter/signal').set({ key: newValue })
 }
 
 export function sendRecharge(recharge) {
-  receivedRecharge = recharge
-  console.log('Recharged:', receivedRecharge)
-
-  firebase.database().ref('meter/token').set({ key: receivedRecharge })
+  firebase.database().ref('meter/token').set({ key: recharge })
 }
 
-const Connector = () => {
+const Connector = ({ rechargeValues }) => {
   const [data, setData] = useState(null)
-
+  console.log('from con', rechargeValues)
   useEffect(() => {
     const dataRef = firebase.database().ref('meter')
     dataRef.on('value', (snapshot) => {
@@ -35,9 +26,9 @@ const Connector = () => {
   }, [])
 
   return (
-    <>
-      <div>{data && <Monitor data={data} />}</div>
-    </>
+    <div>
+      <Notification data={data} rechargeValues={rechargeValues} />
+    </div>
   )
 }
 
