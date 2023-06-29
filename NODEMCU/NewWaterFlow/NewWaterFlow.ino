@@ -11,8 +11,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define FIREBASE_AUTH "AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA"
 
 //wifi
-#define WIFI_SSID "iPhone"
-#define WIFI_PASSWORD "nafe1739"
+#define WIFI_SSID "RussiaN"
+#define WIFI_PASSWORD "mlakalakanji"
 
 //Thingspeak
 const char* host = "api.thingspeak.com";
@@ -102,7 +102,7 @@ void setup() {
 void loop() {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("SMART WATR METER");
+  lcd.print("SMART P W METER");
   
   Serial.println("SMART WATER METER");
   // getting the recharge value from the database
