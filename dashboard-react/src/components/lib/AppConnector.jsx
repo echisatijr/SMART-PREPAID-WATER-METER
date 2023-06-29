@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
-import Notification from '../alert/Notification'
+import AppBarNav from '../navbar/AppBar'
 
 export function sendValue(newValue) {
   firebase.database().ref('meter/signal').set({ key: newValue })
@@ -13,7 +13,7 @@ export function sendRecharge(recharge) {
   firebase.database().ref('meter/token').set({ key: recharge })
 }
 
-const Connector = ({ rechargeValues }) => {
+const AppConnector = ({ rechargeValues }) => {
   const [data, setData] = useState(null)
   console.log('from con', rechargeValues)
   useEffect(() => {
@@ -30,9 +30,9 @@ const Connector = ({ rechargeValues }) => {
 
   return (
     <div>
-      <Notification data={data} rechargeValues={rechargeValues} />
+      <AppBarNav data={data} rechargeValues={rechargeValues} />
     </div>
   )
 }
 
-export default Connector
+export default AppConnector

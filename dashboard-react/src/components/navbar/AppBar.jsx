@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -9,7 +9,10 @@ import { NavLink } from 'react-router-dom'
 import PersonIcon from '@mui/icons-material/Person'
 import './bottom.css'
 
-const AppBarNav = () => {
+const AppBarNav = ({ data }) => {
+  const { notification } = data || {}
+  const not = notification?.key ?? 0 // Provide a default value of 0 if notification or notification.key is undefined
+
   return (
     <section className='app-bar'>
       <Box sx={{ flexGrow: 1, padding: 1 }}>
@@ -23,7 +26,7 @@ const AppBarNav = () => {
                 aria-label='show 17 new notifications'
                 color='inherit'
               >
-                <Badge badgeContent={1} color='error'>
+                <Badge badgeContent={not} color='error'>
                   <NotificationsIcon fontSize='35px' />
                 </Badge>
               </IconButton>

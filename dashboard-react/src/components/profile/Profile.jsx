@@ -3,8 +3,8 @@ import React from 'react'
 import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
-import AppBarNav from '../navbar/AppBar'
 import RechargeApp from './RechargeApp'
+import AppConnector from '../lib/AppConnector'
 const Profile = () => {
   return (
     <div className='combined'>
@@ -12,7 +12,7 @@ const Profile = () => {
         <Navbar />
       </div>
       <div className='small-nav'>
-        <AppBarNav />
+        <AppConnector />
       </div>
       <div className='recharge'>
         <RechargeApp />

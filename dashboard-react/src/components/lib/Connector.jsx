@@ -7,7 +7,6 @@ let receivedRecharge = null
 
 export function sendValue(newValue) {
   receivedValue = newValue
-  console.log('Received value:', receivedValue)
 
   firebase.database().ref('meter/signal').set({ key: receivedValue })
 }

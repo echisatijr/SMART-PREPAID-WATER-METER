@@ -3,9 +3,9 @@ import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
 import RechargeTab from './RechargeTab'
-import AppBarNav from '../navbar/AppBar'
 
-// import Try from './Try'
+import AppConnector from '../lib/AppConnector'
+
 const Recharge = () => {
   return (
     <div className='combined'>
@@ -13,7 +13,7 @@ const Recharge = () => {
         <Navbar />
       </div>
       <div className='small-nav'>
-        <AppBarNav />
+        <AppConnector />
       </div>
       <div>
         <RechargeTab />

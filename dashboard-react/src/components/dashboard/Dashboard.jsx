@@ -3,7 +3,7 @@ import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
 import Navbar from '../navbar/Navbar'
 import Connector from '../lib/Connector'
-import AppBarNav from '../navbar/AppBar'
+import AppConnector from '../lib/AppConnector'
 
 const Dashboard = () => {
   return (
@@ -12,7 +12,7 @@ const Dashboard = () => {
         <Navbar />
       </div>
       <div className='small-nav'>
-        <AppBarNav />
+        <AppConnector />
       </div>
       <div className='dashboard-tabs'>
         <Connector />

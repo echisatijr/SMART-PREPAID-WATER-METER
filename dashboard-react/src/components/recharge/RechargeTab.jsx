@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './recharge.css'
 import { TextField } from '@mui/material'
-import OtherComponent from './OtherComponent'
+
 import { sendRecharge } from '../lib/Connector'
 
 const Try = () => {
@@ -35,8 +35,7 @@ const Try = () => {
       setSuccess(true)
       setError(false)
       let floatValue = parseFloat(token)
-      console.log('float value: ', floatValue)
-      ;<OtherComponent floatValue={floatValue} />
+
       sendRecharge(floatValue)
 
       setTimeout(() => {

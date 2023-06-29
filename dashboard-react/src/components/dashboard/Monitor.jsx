@@ -5,7 +5,7 @@ import Iframe from 'react-iframe'
 import './Monitor.css'
 const Monitor = ({ data }) => {
   const { flowRate, volume, token, remainingWater } = data
-  console.log(data)
+
   return (
     <Box
       sx={{
