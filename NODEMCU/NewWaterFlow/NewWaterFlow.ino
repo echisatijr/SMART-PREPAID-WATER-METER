@@ -67,6 +67,7 @@ void setup() {
   totalMilliLitres = 0;
   previousMillis = 0;
   remainingWater = 0;
+  int b = 0;
   
   attachInterrupt(digitalPinToInterrupt(SENSOR), pulseCounter, FALLING);
   
@@ -80,8 +81,10 @@ void setup() {
     Serial.print(".");
     lcd.setCursor(0, 0);
     lcd.print("Conectng to WiFi");
-    lcd.setCursor(0, 1);
+    lcd.setCursor(b, 1);
     lcd.print(".");
+    b = b + 1;
+    
     delay(1000);
   }
   
@@ -99,10 +102,14 @@ void setup() {
   Firebase.reconnectWiFi(true);
 }
 
-void loop() {
+void loop() { 
   lcd.clear();
+  //lcd.begin(16, 2);
   lcd.setCursor(0, 0);
   lcd.print("SMART P W METER");
+  //lcd.scrollDisplayLeft();
+  delay(500);  
+  //delay(200);
   
   Serial.println("SMART WATER METER");
   // getting the recharge value from the database
@@ -157,7 +164,7 @@ void loop() {
     pulseCount = 0;
 
   /* 
-    this loop may not complete in exactly 1 second intervals so we calculate
+    Because this loop may not complete in exactly 1 second intervals we calculate
     the number of milliseconds that have passed since the last execution and use
     that to scale the output. We also apply the calibrationFactor to scale the output
     based on the number of pulses per second per units of measure (litres/minute in
@@ -179,8 +186,6 @@ void loop() {
 
     totalMilliLitres += flowMilliLitres;
     totalLitres += flowLitres;
-
-    //remainingWater = remainingWater - totalLitres;
 
     //Printing the flow rate for this second in litres/ minute
     Serial.print("Flow rate: ");
@@ -240,5 +245,5 @@ void loop() {
   // Sending remainingWater to Firebase database
   String remainingWaterString = String(remainingWater);
   Firebase.setString(firebaseData, "/meter/remainingWater", remainingWaterString);
-  delay(1000);
+  //delay(1000);
 }
