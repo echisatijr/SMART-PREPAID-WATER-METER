@@ -28,42 +28,57 @@ const Notification = ({ data }) => {
     return storedRemainingWater ? JSON.parse(storedRemainingWater) : []
   })
 
-  const getConcatenatedArray = (values, remwater) => {
-    let concatenatedArray = [...values, ...remwater]
-    return concatenatedArray
+  const getAlternatingArray = (values, remwater) => {
+    const alternatingArray = []
+    const maxLength = Math.max(values.length, remwater.length)
+
+    for (let i = 0; i < maxLength; i++) {
+      if (values[i]) {
+        alternatingArray.push({ type: 'purchase', value: values[i] })
+      }
+      if (remwater[i]) {
+        alternatingArray.push({ type: 'remaining', value: remwater[i] })
+      }
+    }
+
+    return alternatingArray
   }
 
   useEffect(() => {
     if (remainingWater != undefined && remainingWater != null) {
-      if (remainingWater >= 4.9 && remainingWater <= 5) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-      }
-      if (remainingWater >= 2.4 && remainingWater <= 2.5) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-      }
-      if (remainingWater >= 1.4 && remainingWater <= 1.5) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-      }
-      if (remainingWater >= 0.7 && remainingWater <= 0.8) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-      }
-      if (remainingWater >= 0.4 && remainingWater <= 0.5) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-      }
-      if (remainingWater == 0) {
-        const remvalues = [...remwater, remainingWater]
-        setRemwater(remvalues)
-        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      if (remainingWater != undefined && remainingWater != null) {
+        if (remainingWater >= 4.9 && remainingWater <= 5) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+        if (remainingWater >= 2.4 && remainingWater <= 2.5) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+        if (remainingWater >= 1.4 && remainingWater <= 1.5) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+        if (remainingWater >= 0.7 && remainingWater <= 0.8) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+        if (remainingWater >= 0.4 && remainingWater <= 0.5) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+        if (remainingWater == 0) {
+          const remvalues = [...remwater, remainingWater]
+          setRemwater(remvalues)
+          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+        }
+      } else {
+        console.log('remaining water is undefined or null')
       }
     } else {
       console.log('remaining water is undefined or null')
@@ -84,46 +99,28 @@ const Notification = ({ data }) => {
     localStorage.removeItem('notificationValues')
     localStorage.removeItem('remainingWater')
   }
-  console.log('remaining water ', remwater)
 
-  const concatenatedArray = getConcatenatedArray(values, remwater)
-  const concatenatedLength = concatenatedArray.length
-  console.log('from not', concatenatedLength)
-  sendNotValue(concatenatedLength)
-
-  console.log('remwater array:', remwater) // Log the remwater array
+  const alternatingArray = getAlternatingArray(values, remwater)
+  console.log('alternatingArray:', alternatingArray)
 
   return (
     <div className='noti'>
       <div className='container alert'>
         <div className='row notification' style={{ flexDirection: 'column' }}>
           <Stack sx={{ width: '100%', marginTop: 5 }} spacing={2}>
-            {values
+            {alternatingArray
               .slice(0)
               .reverse()
-              .map((value, index) => (
+              .map((item, index) => (
                 <Alert
                   className='alert-not'
                   sx={{ fontSize: 12 }}
-                  severity='success'
+                  severity={item.type === 'purchase' ? 'success' : 'warning'}
                   key={index}
                 >
-                  You have successfully purchased {value} mL
-                </Alert>
-              ))}
-          </Stack>
-          <Stack sx={{ width: '100%', marginTop: 5 }} spacing={2}>
-            {remwater
-              .slice(0)
-              .reverse()
-              .map((value, index) => (
-                <Alert
-                  className='alert-not'
-                  sx={{ fontSize: 12 }}
-                  severity='warning'
-                  key={index}
-                >
-                  You are remaining with {value} L
+                  {item.type === 'purchase'
+                    ? `You have successfully purchased ${item.value} mL`
+                    : `You are remaining with ${item.value} L`}
                 </Alert>
               ))}
           </Stack>

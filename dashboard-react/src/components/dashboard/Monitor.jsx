@@ -9,14 +9,14 @@ const Monitor = ({ data }) => {
   return (
     <Box
       sx={{
-        marginTop: 6,
+        marginTop: 9,
         '@media (max-width:600px)': {
           marginTop: 1,
         },
       }}
     >
-      <div className='container monitor '>
-        <div className='row  data'>
+      <div className='container monitor ' style={{ marginTop: 100 }}>
+        <div className='row  data '>
           <div className='col-3 data_col'>
             <Card
               sx={{

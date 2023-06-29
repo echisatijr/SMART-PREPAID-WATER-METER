@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -6,25 +6,19 @@ import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import { NavLink } from 'react-router-dom'
-import PersonIcon from '@mui/icons-material/Person'
 import './bottom.css'
-import { Menu, MenuItem } from '@mui/material'
 
 const AppBarNav = ({ data }) => {
-  const { notification } = data || {}
-  const not = notification?.key ?? 0 // Provide a default value of 0 if notification or notification.key is undefined
-  console.log('from app', not)
+  const [not, setNot] = useState(0)
 
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleMenuClose = () => {
-    setAnchorEl(null)
-  }
-
+  useEffect(() => {
+    if (data && data.notification && data.notification.key) {
+      setNot(data.notification.key)
+    } else {
+      setNot(0)
+    }
+  }, [data])
+  console.log('values from app', not)
   return (
     <section className='app-bar' style={{ zIndex: 0 }}>
       <Box sx={{ flexGrow: 1, padding: 1 }}>

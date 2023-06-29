@@ -1,6 +1,5 @@
 import React from 'react'
 import Grid from '@mui/material/Grid'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import './navbar.css'
@@ -16,7 +15,7 @@ function Navbar({ data }) {
     <nav style={{}} className='nav'>
       <NavLink to='/' className='brand'>
         {' '}
-        Smart Water Prepaid Meter
+        Smart Prepaid Water Meter
       </NavLink>
       <ul className='nav__menu'>
         <li className='nav__items'>
@@ -53,9 +52,6 @@ function Navbar({ data }) {
               <NotificationsIcon fontSize='35px' />
             </Badge>
           </IconButton>
-        </NavLink>
-        <NavLink className='nav__items icon-data' to='/profile'>
-          <PersonOutlineIcon sx={{ fontSize: 30 }} className='label' />
         </NavLink>
       </Grid>
     </nav>

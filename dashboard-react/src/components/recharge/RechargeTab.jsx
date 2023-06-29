@@ -32,13 +32,57 @@ const Try = () => {
     if (token !== '') {
       // Check if the token is not empty
       if (token !== previousToken) {
-        setToken('')
-        setPreviousToken(token)
-        setSuccess(true)
-        setError(false)
-        let floatValue = parseFloat(token)
+        if (token === '1202300100') {
+          const value = 1
+          setToken('')
+          setPreviousToken(value)
+          setSuccess(true)
+          setError(false)
+          let floatValue = parseFloat(value)
 
-        sendRecharge(floatValue)
+          sendRecharge(floatValue)
+        } else if (token === '1202300050') {
+          const value = 0.5
+          setToken('')
+          setPreviousToken(value)
+          setSuccess(true)
+          setError(false)
+          let floatValue = parseFloat(value)
+
+          sendRecharge(floatValue)
+        } else if (token === '1202300280') {
+          const value = 2.8
+          setToken('')
+          setPreviousToken(value)
+          setSuccess(true)
+          setError(false)
+          let floatValue = parseFloat(value)
+
+          sendRecharge(floatValue)
+        } else if (token === '1202300516') {
+          const value = 5.16
+          setToken('')
+          setPreviousToken(value)
+          setSuccess(true)
+          setError(false)
+          let floatValue = parseFloat(value)
+
+          sendRecharge(floatValue)
+        } else if (token === '1202301000') {
+          const value = 10
+          setToken('')
+          setPreviousToken(value)
+          setSuccess(true)
+          setError(false)
+          let floatValue = parseFloat(value)
+
+          sendRecharge(floatValue)
+        } else {
+          // Invalid token
+          setError(true)
+          setSuccess(false)
+          return // Stop further execution of the function
+        }
 
         setTimeout(() => {
           setSuccess(false)
@@ -78,7 +122,9 @@ const Try = () => {
           />
         </div>
         <div style={{ marginTop: 5 }} className='success-label'>
-          {success && <p>You have successfully recharged</p>}
+          {success && (
+            <p style={{ color: '#fff' }}>You have successfully recharged</p>
+          )}
         </div>
         <div className='btn-field'>
           <button type='submit' className='btn btn-primary' id='submit-btn'>
