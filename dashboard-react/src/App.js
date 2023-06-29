@@ -11,6 +11,7 @@ import NavBadge from './components/lib/NavBadge'
 import './components/combined.css'
 import BottomNavbar from './components/navbar/BottomNavbar'
 import AppConnector from './components/lib/AppConnector'
+
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
 

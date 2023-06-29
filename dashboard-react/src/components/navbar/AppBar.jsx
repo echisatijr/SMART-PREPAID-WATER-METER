@@ -26,7 +26,7 @@ const AppBarNav = ({ data }) => {
   }
 
   return (
-    <section className='app-bar'>
+    <section className='app-bar' style={{ zIndex: 0 }}>
       <Box sx={{ flexGrow: 1, padding: 1 }}>
         <AppBar className='nav-up' position='static'>
           <Toolbar>
@@ -43,33 +43,6 @@ const AppBarNav = ({ data }) => {
                 </Badge>
               </IconButton>
             </NavLink>
-            <a
-              className='nav__items'
-              aria-label='show menu'
-              color='inherit'
-              style={{
-                padding: 20,
-              }}
-              onClick={handleMenuOpen}
-            >
-              <Badge color='error'>
-                <PersonIcon fontSize='30px' />
-              </Badge>
-            </a>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-            >
-              <MenuItem
-                sx={{
-                  backgroundColor: 'rgb(0, 33, 65)',
-                }}
-                onClick={handleMenuClose}
-              >
-                Log Out
-              </MenuItem>
-            </Menu>
           </Toolbar>
         </AppBar>
       </Box>

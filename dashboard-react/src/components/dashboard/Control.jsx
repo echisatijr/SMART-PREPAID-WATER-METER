@@ -62,6 +62,8 @@ export default function Control() {
                 in={loading}
                 style={{
                   transitionDelay: loading ? '800ms' : '0ms',
+                  width: 50,
+                  color: '#fff',
                 }}
                 unmountOnExit
               >
@@ -79,10 +81,12 @@ export default function Control() {
                 onClick={handleClickLoading}
                 sx={{
                   marginBottom: 10,
-                  backgroundColor: '#000',
+                  backgroundColor: '#fff',
                   width: 150,
-                  fontSize: 13,
+                  fontSize: 16,
+                  fontWeight: 600,
                 }}
+                className='btn'
               >
                 {loading ? 'Stop Valve' : 'Open Valve'}
               </Button>

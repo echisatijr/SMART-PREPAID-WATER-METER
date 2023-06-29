@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(244, 242, 240);
+  background-color: rgb(35, 44, 62);
   font-family: monospace;
 }
 
@@ -10,21 +10,20 @@ body {
   justify-content: center;
 }
 .form-group {
-  margin-top: 20rem;
-  background-color: rgb(145, 149, 153);
+  background: rgb(0, 33, 65);
   width: 350px !important;
   border-radius: 20px;
-  height: 20rem;
+  height: 25rem;
 }
 .textfield {
-  padding-top: 40px;
+  padding-top: 30px;
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
 
 .btn-field {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +31,8 @@ body {
 
 .btn-field button {
   width: 20rem !important;
-  height: 30px;
-  background-color: rgb(24, 24, 31);
+  height: 40px;
+  background-color: rgb(54, 54, 72);
   font-size: 16px;
   border: none;
   color: #fff;
@@ -46,13 +45,13 @@ body {
 }
 .btn-field button:hover {
   width: 20rem !important;
-  height: 30px;
+  height: 40px;
   background-color: rgb(24, 24, 31);
   font-size: 16px;
   color: #fff;
 }
 input {
   width: 20rem !important;
-  font-size: large !important;
+  font-size: 20px !important;
   font-family: monospace;
 }

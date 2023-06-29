@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import firebase from './firebase'
 import './login.css'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('')
@@ -40,31 +41,38 @@ const LoginForm = ({ onLogin }) => {
   }
 
   return (
-    <div className='background'>
-      <div className='shape'></div>
-      <div className='shape'></div>
-      <form onSubmit={handleSubmit}>
-        <h3>Sign In</h3>
-        {error && <p className='error-message'>{error}</p>}
-        <label htmlFor='username'>Meter Number</label>
-        <input
-          type='text'
-          placeholder='Enter Meter Number'
-          id='username'
-          value={username}
-          onChange={handleChange}
-        />
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          placeholder='Password'
-          id='password'
-          value={password}
-          onChange={handleChange}
-        />
-
-        <button type='submit'>Sign In</button>
-      </form>
+    <div className={`form-container ${error ? 'error' : ''}`}>
+      <div className='background'>
+        <div className='shape'></div>
+        <div className='shape'></div>
+        <form onSubmit={handleSubmit}>
+          <h3>Sign In</h3>
+          {error && (
+            <p className='error-message'>
+              <ErrorOutlineIcon fontSize='large' /> Error
+              <br />
+              {error}
+            </p>
+          )}
+          <label htmlFor='username'>Meter Number</label>
+          <input
+            type='text'
+            placeholder='Enter Meter Number'
+            id='username'
+            value={username}
+            onChange={handleChange}
+          />
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            placeholder='Password'
+            id='password'
+            value={password}
+            onChange={handleChange}
+          />
+          <button type='submit'>Sign In</button>
+        </form>
+      </div>
     </div>
   )
 }

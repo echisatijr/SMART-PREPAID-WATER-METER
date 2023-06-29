@@ -29,21 +29,26 @@ const Try = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (token !== previousToken) {
-      setToken('')
-      setPreviousToken(token)
-      setSuccess(true)
-      setError(false)
-      let floatValue = parseFloat(token)
+    if (token !== '') {
+      // Check if the token is not empty
+      if (token !== previousToken) {
+        setToken('')
+        setPreviousToken(token)
+        setSuccess(true)
+        setError(false)
+        let floatValue = parseFloat(token)
 
-      sendRecharge(floatValue)
+        sendRecharge(floatValue)
 
-      setTimeout(() => {
+        setTimeout(() => {
+          setSuccess(false)
+        }, 2000)
+      } else {
+        setError(true)
         setSuccess(false)
-      }, 2000)
+      }
     } else {
       setError(true)
-      setSuccess(false)
     }
   }
 
@@ -53,37 +58,34 @@ const Try = () => {
         <div className='textfield'>
           <TextField
             sx={{
-              width: '240px',
+              width: '200px',
               '& .MuiInputBase-input': {
                 fontSize: '10px',
               },
               '& .MuiInputLabel-root': {
-                fontSize: '15px',
+                fontSize: '10px',
               },
+              '& .MuiInputLabel-root.MuiInputLabel-shrink': {
+                fontSize: '1px',
+              },
+              backgroundColor: '#fff',
             }}
             error={error}
             helperText={error && !success ? 'Invalid token!!' : ''}
-            label='Recharge'
-            placeholder='Enter recharge number'
+            placeholder='recharge number'
             value={token}
             onChange={handleChange}
           />
         </div>
-        <div className='success-label'>
+        <div style={{ marginTop: 5 }} className='success-label'>
           {success && <p>You have successfully recharged</p>}
         </div>
         <div className='btn-field'>
-          <button
-            type='submit'
-            className='btn btn-primary'
-            id='submit-btn'
-            disabled={!token}
-          >
+          <button type='submit' className='btn btn-primary' id='submit-btn'>
             Recharge
           </button>
         </div>
       </form>
-      {/* <Notifications /> */}
     </section>
   )
 }

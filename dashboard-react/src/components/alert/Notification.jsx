@@ -3,6 +3,7 @@ import './Notification.css'
 import { Alert, Button, Stack } from '@mui/material'
 
 import { sendNotValue } from '../lib/NotConnector'
+
 const calculateRemainingWaterPercentage = (tok, watedUsed) => {
   const volume = watedUsed
   const remainingWaterPercentage = (volume / tok) * 100
@@ -12,17 +13,10 @@ const calculateRemainingWaterPercentage = (tok, watedUsed) => {
     console.log('value is NaN')
   }
 }
-const Notification = ({ data }) => {
-  const { token, volume } = data || {}
-  const tok = token && token.key
-  const waterUsed = volume && volume.key
-  console.log('volume data', data)
 
-  const remainingWaterPercentage = calculateRemainingWaterPercentage(
-    tok,
-    waterUsed
-  )
-  console.log('The remaining water is ', remainingWaterPercentage, '%')
+const Notification = ({ data }) => {
+  const { token, volume, remainingWater } = data || {}
+  const tok = token && token.key
 
   const [values, setValues] = useState(() => {
     const storedValues = localStorage.getItem('notificationValues')
@@ -30,34 +24,51 @@ const Notification = ({ data }) => {
   })
 
   const [remwater, setRemwater] = useState(() => {
-    const storedRemwater = localStorage.getItem('remainingWater')
-    return storedRemwater ? JSON.parse(storedRemwater) : []
+    const storedRemainingWater = localStorage.getItem('remainingWater')
+    return storedRemainingWater ? JSON.parse(storedRemainingWater) : []
   })
 
   const getConcatenatedArray = (values, remwater) => {
     let concatenatedArray = [...values, ...remwater]
-
     return concatenatedArray
   }
 
   useEffect(() => {
-    if (
-      remainingWaterPercentage &&
-      ['50', '70', '90', '100'].includes(remainingWaterPercentage) &&
-      !remwater.includes(remainingWaterPercentage)
-    ) {
-      const newRem = [...remwater, remainingWaterPercentage]
-      setRemwater(newRem)
-      localStorage.setItem('remainingWater', JSON.stringify(newRem))
+    if (remainingWater != undefined && remainingWater != null) {
+      if (remainingWater >= 4.9 && remainingWater <= 5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 2.4 && remainingWater <= 2.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 1.4 && remainingWater <= 1.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 0.7 && remainingWater <= 0.8) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 0.4 && remainingWater <= 0.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater == 0) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+    } else {
+      console.log('remaining water is undefined or null')
     }
-  }, [remainingWaterPercentage, remwater])
-
-  useEffect(() => {
-    const newRem = localStorage.getItem('remainingWater')
-    if (newRem) {
-      setValues(JSON.parse(newRem))
-    }
-  }, [])
+  }, [remainingWater])
 
   useEffect(() => {
     if (tok && !values.includes(tok)) {
@@ -73,38 +84,48 @@ const Notification = ({ data }) => {
     localStorage.removeItem('notificationValues')
     localStorage.removeItem('remainingWater')
   }
+  console.log('remaining water ', remwater)
 
   const concatenatedArray = getConcatenatedArray(values, remwater)
   const concatenatedLength = concatenatedArray.length
-  console.log(concatenatedLength)
+  console.log('from not', concatenatedLength)
   sendNotValue(concatenatedLength)
+
+  console.log('remwater array:', remwater) // Log the remwater array
 
   return (
     <div className='noti'>
       <div className='container alert'>
         <div className='row notification' style={{ flexDirection: 'column' }}>
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            {values.map((value, index) => (
-              <Alert
-                className='alert-not'
-                sx={{ fontSize: 12 }}
-                severity='success'
-                key={index}
-              >
-                You have successfully purchased {value} mL
-              </Alert>
-            ))}
+          <Stack sx={{ width: '100%', marginTop: 5 }} spacing={2}>
+            {values
+              .slice(0)
+              .reverse()
+              .map((value, index) => (
+                <Alert
+                  className='alert-not'
+                  sx={{ fontSize: 12 }}
+                  severity='success'
+                  key={index}
+                >
+                  You have successfully purchased {value} mL
+                </Alert>
+              ))}
           </Stack>
-          <Stack sx={{ width: '100%', marginTop: 2 }} spacing={2}>
-            {['50', '70', '90', '100'].includes(remainingWaterPercentage) && (
-              <Alert
-                className='alert-not'
-                sx={{ fontSize: 12 }}
-                severity='warning'
-              >
-                You have used {remainingWaterPercentage} % of your water units
-              </Alert>
-            )}
+          <Stack sx={{ width: '100%', marginTop: 5 }} spacing={2}>
+            {remwater
+              .slice(0)
+              .reverse()
+              .map((value, index) => (
+                <Alert
+                  className='alert-not'
+                  sx={{ fontSize: 12 }}
+                  severity='warning'
+                  key={index}
+                >
+                  You are remaining with {value} L
+                </Alert>
+              ))}
           </Stack>
         </div>
       </div>
