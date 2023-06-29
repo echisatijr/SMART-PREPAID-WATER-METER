@@ -234,13 +234,7 @@ void loop() {
   ThingSpeak.writeField(chanID, 1, flowRate, writeAPIKey);
   ThingSpeak.writeField(chanID, 2, totalLitres, writeAPIKey);
 
- /*
-  if (remainingWater < 1){
-   remainingWater = 0;
-  }
-  else{
-    remainingWater = remainingWater - flowLitres;
-  }*/
+  //updating the remaining water
   remainingWater = remainingWater - (flowLitres);
 
   // Sending remainingWater to Firebase database
