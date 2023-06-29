@@ -21,7 +21,7 @@ const App = () => {
   return (
     <AppProvider>
       {!loggedIn ? (
-        <LoginForm onLogin={handleLogin} />
+        <LoginForm path onLogin={handleLogin} />
       ) : (
         <div className='App'>
           <div className='navbar-up'>

@@ -10,6 +10,7 @@ import { Badge, IconButton } from '@mui/material'
 function Navbar({ data }) {
   const { notification } = data || {}
   const not = notification?.key ?? 0
+  console.log('from navbar ', not)
   console.log('from nav ', not)
   return (
     <nav style={{}} className='nav'>

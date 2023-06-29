@@ -3,13 +3,6 @@ import firebase from './firebase'
 
 import Navbar from '../navbar/Navbar'
 
-export function sendValue(newValue) {
-  firebase.database().ref('meter/signal').set({ key: newValue })
-}
-export function sendNotValue(newValue) {
-  firebase.database().ref('meter/notification').set({ key: newValue })
-}
-
 export function sendRecharge(recharge) {
   firebase.database().ref('meter/token').set({ key: recharge })
 }

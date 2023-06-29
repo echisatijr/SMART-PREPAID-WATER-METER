@@ -76,7 +76,7 @@ const Notification = ({ data }) => {
 
   const concatenatedArray = getConcatenatedArray(values, remwater)
   const concatenatedLength = concatenatedArray.length
-  console.log(concatenatedArray)
+  console.log(concatenatedLength)
   sendNotValue(concatenatedLength)
 
   return (
