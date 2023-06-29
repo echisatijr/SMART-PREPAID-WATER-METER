@@ -8,19 +8,19 @@ import AppConnector from '../lib/AppConnector'
 const Profile = () => {
   return (
     <div className='combined'>
-      <div className='navbar-up'>
+      {/* <div className='navbar-up'>
         <Navbar />
       </div>
       <div className='small-nav'>
         <AppConnector />
-      </div>
+      </div> */}
       <div className='recharge'>
         <RechargeApp />
       </div>
 
-      <div className='navbar-bottom'>
+      {/* <div className='navbar-bottom'>
         <BottomNavbar />
-      </div>
+      </div> */}
     </div>
   )
 }

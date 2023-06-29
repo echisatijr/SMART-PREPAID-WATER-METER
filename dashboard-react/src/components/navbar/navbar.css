@@ -60,6 +60,9 @@ a {
     display: block;
     cursor: pointer;
   }
+  .nav {
+    display: none;
+  }
   .nav__menu {
     position: fixed;
     top: 7vh;
@@ -90,7 +93,7 @@ a {
 
 a.active::after {
   content: '';
-  height: 3px;
+  height: 1px;
   width: 100%;
   background: rgb(0, 183, 255);
   position: absolute;

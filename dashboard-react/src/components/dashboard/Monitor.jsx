@@ -15,7 +15,7 @@ const Monitor = ({ data }) => {
         },
       }}
     >
-      <div className='container'>
+      <div className='container monitor '>
         <div className='row  data'>
           <div className='col-3 data_col'>
             <Card

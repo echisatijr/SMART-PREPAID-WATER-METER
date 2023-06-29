@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 import 'firebase/compat/database'
-import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA',
@@ -16,8 +16,5 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
 }
-
-const app = firebase.app() // Access the initialized app outside the if statement
-export const auth = getAuth(app)
 
 export default firebase

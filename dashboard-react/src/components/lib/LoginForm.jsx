@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import firebase from './firebase'
 import './login.css'
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
   const handleChange = (event) => {
@@ -15,18 +17,26 @@ const LoginForm = ({ onLogin }) => {
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    // Perform login logic here
-    console.log('Username:', username)
-    console.log('Password:', password)
-    // Clear input fields
-    setUsername('')
-    setPassword('')
-    // Call onLogin callback to update parent component state
-    onLogin()
-    // Navigate to the home page
-    navigate('/')
+
+    try {
+      const fullUsername = `${username}@example.com`
+      await firebase.auth().signInWithEmailAndPassword(fullUsername, password)
+      console.log('Login successful')
+      // Clear input fields
+      setUsername('')
+      setPassword('')
+      // Call onLogin callback to update parent component state
+      onLogin()
+      // Navigate to the home page
+      navigate('/')
+    } catch (error) {
+      console.error('Login error:', error.message)
+      setError('Incorrect meter number or password')
+      setUsername('')
+      setPassword('')
+    }
   }
 
   return (
@@ -35,6 +45,7 @@ const LoginForm = ({ onLogin }) => {
       <div className='shape'></div>
       <form onSubmit={handleSubmit}>
         <h3>Sign In</h3>
+        {error && <p className='error-message'>{error}</p>}
         <label htmlFor='username'>Meter Number</label>
         <input
           type='text'

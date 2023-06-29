@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
-import AppBarNav from '../navbar/AppBar'
+
 import Navbar from '../navbar/Navbar'
 
 export function sendValue(newValue) {
@@ -31,7 +31,6 @@ const AppConnector = ({ rechargeValues }) => {
 
   return (
     <div>
-      <AppBarNav data={data} rechargeValues={rechargeValues} />
       <Navbar data={data} rechargeValues={rechargeValues} />
     </div>
   )

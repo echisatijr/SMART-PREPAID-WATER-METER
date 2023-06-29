@@ -31,12 +31,6 @@ export default function Control() {
   }
   return (
     <div className='combined'>
-      <div className='navbar-up'>
-        <Navbar />
-      </div>
-      <div className='small-nav'>
-        <AppBarNav />
-      </div>
       <div className='dashboard-tabs'>
         <Box
           sx={{

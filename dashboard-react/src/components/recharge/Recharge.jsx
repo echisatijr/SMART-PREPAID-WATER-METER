@@ -1,25 +1,18 @@
 import React from 'react'
 import '../combined.css'
 import BottomNavbar from '../navbar/BottomNavbar'
-import Navbar from '../navbar/Navbar'
 import RechargeTab from './RechargeTab'
-
+import NavBadge from '../lib/NavBadge'
 import AppConnector from '../lib/AppConnector'
 
 const Recharge = () => {
   return (
     <div className='combined'>
-      <div className='navbar-up'>
-        <Navbar />
-      </div>
-      <div className='small-nav'>
+      {/* <div className='small-nav'>
         <AppConnector />
-      </div>
+      </div> */}
       <div>
         <RechargeTab />
-      </div>
-      <div className='navbar-bottom'>
-        <BottomNavbar />
       </div>
     </div>
   )
