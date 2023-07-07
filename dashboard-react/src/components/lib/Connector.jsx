@@ -1,3 +1,11 @@
+/*
+-This component gets the data from firebase component and passes that data to the monitor.js component
+-It recieves the value of token from recharge component and updates the firebase database
+-It recieves the value from control component and updates the firebase database
+
+*/
+
+// imports
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
 import Monitor from '../dashboard/Monitor'
@@ -5,17 +13,18 @@ import Monitor from '../dashboard/Monitor'
 let receivedValue = null
 let receivedRecharge = null
 
-export function sendValue(newValue) {
-  receivedValue = newValue
+// getting the signal that controls the valve and updating the database
+export function sendValue(newSignalValue) {
+  receivedValue = newSignalValue
 
-  firebase.database().ref('meter/signal').set({ key: receivedValue })
+  firebase.database().ref('meter/signal').set({ key: newSignalValue })
 }
 
-export function sendRecharge(recharge) {
-  receivedRecharge = recharge
-  console.log('Recharged:', receivedRecharge)
+// getting the value of token and updating the database
+export function sendRecharge(tokenValue) {
+  receivedRecharge = tokenValue
 
-  firebase.database().ref('meter/token').set({ key: receivedRecharge })
+  firebase.database().ref('meter/token').set({ key: tokenValue })
 }
 
 const Connector = () => {
@@ -35,6 +44,7 @@ const Connector = () => {
 
   return (
     <>
+      {/* passing the data to the Monitor.js component */}
       <div>{data && <Monitor data={data} />}</div>
     </>
   )

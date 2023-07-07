@@ -1,12 +1,18 @@
+/*
+  gets the data from firebase.js  and passes it to the Notification component
+*/
+
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
 import Notification from '../alert/Notification'
 
-export function sendValue(newValue) {
-  firebase.database().ref('meter/signal').set({ key: newValue })
+export function sendValue(newSignal) {
+  firebase.database().ref('meter/signal').set({ key: newSignal })
 }
-export function sendNotValue(newValue) {
-  firebase.database().ref('meter/notification').set({ key: newValue })
+
+//gets the data from notification.js and updates the database
+export function sendNotValue(notificationValue) {
+  firebase.database().ref('meter/notification').set({ key: notificationValue })
 }
 
 export function sendRecharge(recharge) {
@@ -15,7 +21,6 @@ export function sendRecharge(recharge) {
 
 const Connector = ({ rechargeValues }) => {
   const [data, setData] = useState(null)
-  console.log('from con', rechargeValues)
   useEffect(() => {
     const dataRef = firebase.database().ref('meter')
     dataRef.on('value', (snapshot) => {
@@ -30,6 +35,7 @@ const Connector = ({ rechargeValues }) => {
 
   return (
     <div>
+      {/* sending the data from the database to the Notification component */}
       <Notification data={data} rechargeValues={rechargeValues} />
     </div>
   )

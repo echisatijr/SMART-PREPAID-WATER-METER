@@ -1,9 +1,15 @@
+/*
+This component takes the data from firebase and 
+ Function to calculate the remaining water percentage and send the value to NotificationConnector
+*/
+
 import React, { useState, useEffect } from 'react'
 import './Notification.css'
 import { Alert, Button, Stack } from '@mui/material'
 
-import { sendNotValue } from '../lib/NotConnector'
+import { sendNotValue } from '../lib/NotificationConnector'
 
+// Function to calculate the remaining water percentage
 const calculateRemainingWaterPercentage = (tok, watedUsed) => {
   const volume = watedUsed
   const remainingWaterPercentage = (volume / tok) * 100
@@ -18,6 +24,7 @@ const Notification = ({ data }) => {
   const { token, volume, remainingWater } = data || {}
   const tok = token && token.key
 
+  // State for storing values and remaining water
   const [values, setValues] = useState(() => {
     const storedValues = localStorage.getItem('notificationValues')
     return storedValues ? JSON.parse(storedValues) : []
@@ -28,6 +35,7 @@ const Notification = ({ data }) => {
     return storedRemainingWater ? JSON.parse(storedRemainingWater) : []
   })
 
+  // Function to create an alternating array of values and remaining water
   const getAlternatingArray = (values, remwater) => {
     const alternatingArray = []
     const maxLength = Math.max(values.length, remwater.length)
@@ -44,47 +52,45 @@ const Notification = ({ data }) => {
     return alternatingArray
   }
 
+  // Update remaining water and store in local storage
   useEffect(() => {
-    if (remainingWater != undefined && remainingWater != null) {
-      if (remainingWater != undefined && remainingWater != null) {
-        if (remainingWater >= 4.9 && remainingWater <= 5) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-        if (remainingWater >= 2.4 && remainingWater <= 2.5) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-        if (remainingWater >= 1.4 && remainingWater <= 1.5) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-        if (remainingWater >= 0.7 && remainingWater <= 0.8) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-        if (remainingWater >= 0.4 && remainingWater <= 0.5) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-        if (remainingWater == 0) {
-          const remvalues = [...remwater, remainingWater]
-          setRemwater(remvalues)
-          localStorage.setItem('remainingWater', JSON.stringify(remvalues))
-        }
-      } else {
-        console.log('remaining water is undefined or null')
+    if (remainingWater !== undefined && remainingWater != null) {
+      if (remainingWater >= 4.9 && remainingWater <= 5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 2.4 && remainingWater <= 2.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 1.4 && remainingWater <= 1.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 0.7 && remainingWater <= 0.8) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater >= 0.4 && remainingWater <= 0.5) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
+      }
+      if (remainingWater === 0) {
+        const remvalues = [...remwater, remainingWater]
+        setRemwater(remvalues)
+        localStorage.setItem('remainingWater', JSON.stringify(remvalues))
       }
     } else {
       console.log('remaining water is undefined or null')
     }
   }, [remainingWater])
 
+  // Update token values and store in local storage
   useEffect(() => {
     if (tok && !values.includes(tok)) {
       const newValues = [...values, tok]
@@ -93,6 +99,16 @@ const Notification = ({ data }) => {
     }
   }, [tok, values])
 
+  // Send the notification value to the external service
+  useEffect(() => {
+    const alternatingArray = getAlternatingArray(values, remwater)
+    console.log('alternatingArray:', alternatingArray)
+    const arrayAlt = alternatingArray.length
+    console.log('length', arrayAlt)
+    sendNotValue(arrayAlt)
+  }, [values, remwater])
+
+  // Function to clear all values and remaining water
   const clearValues = () => {
     setValues([])
     setRemwater([])
@@ -101,7 +117,9 @@ const Notification = ({ data }) => {
   }
 
   const alternatingArray = getAlternatingArray(values, remwater)
-  console.log('alternatingArray:', alternatingArray)
+  const arrayAlt = alternatingArray.length
+
+  sendNotValue(arrayAlt)
 
   return (
     <div className='noti'>
@@ -114,13 +132,13 @@ const Notification = ({ data }) => {
               .map((item, index) => (
                 <Alert
                   className='alert-not'
-                  sx={{ fontSize: 12 }}
+                  sx={{ fontSize: 20 }}
                   severity={item.type === 'purchase' ? 'success' : 'warning'}
                   key={index}
                 >
                   {item.type === 'purchase'
-                    ? `You have successfully purchased ${item.value} mL`
-                    : `You are remaining with ${item.value} L`}
+                    ? `You have successfully purchased ${item.value} L`
+                    : `Your remaining water is less than ${item.value} L`}
                 </Alert>
               ))}
           </Stack>

@@ -1,3 +1,5 @@
+// gets the data from the firebase.js and passes them to the appConnector
+
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
 

@@ -1,7 +1,14 @@
+/*
+This component gets data from the firebase realtime database
+and exports it
+*/
+
+//imports
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/database'
 
+//firebase API keys
 const firebaseConfig = {
   apiKey: 'AIzaSyCXkVM3-W_BwztwNDrtU-05PGyac8pQEQA',
   authDomain: 'meter-123.firebaseapp.com',

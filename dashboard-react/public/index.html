@@ -1,3 +1,27 @@
+<!--
+This is the HTML template for the main entry point of the application.
+It includes the necessary metadata, links to external resources, and a script to register the service worker.
+
+The HTML structure consists of a head section and a body section.
+
+The head section includes:
+- Charset definition for character encoding
+- Favicon definition
+- Viewport settings for responsive design
+- Theme color definition
+- Description metadata
+- Apple touch icon definition
+- Manifest link for Progressive Web App (PWA)
+- Title of the application
+
+The body section includes:
+- A noscript element for displaying a message when JavaScript is disabled
+- A div element with the id "root" for mounting the React application
+- A script that registers the service worker for offline functionality
+
+Inline comments are added to explain specific sections of the code.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +29,7 @@
     <link rel="icon" type="image/png" href="./images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="This is the smart prepaid meter app " />
+    <meta name="description" content="This is the smart prepaid meter app" />
     <link rel="apple-touch-icon" href="./images/logo.png" />
 
     <link rel="manifest" href="./manifest.json" />
@@ -17,6 +41,7 @@
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {
+        // Register the service worker
         window.addEventListener('load', () => {
           navigator.serviceWorker
             .register('./serviceworker.js')

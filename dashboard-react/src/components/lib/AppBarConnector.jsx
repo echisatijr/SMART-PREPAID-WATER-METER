@@ -1,10 +1,17 @@
+/*
+This Component takes the values of database that are passed through firebase 
+component  and passes them to AppBarNav component
+ */
+
+//imports
 import React, { useEffect, useState } from 'react'
 import firebase from './firebase'
 import AppBarNav from '../navbar/AppBar'
 
-const AppConnector = ({ rechargeValues }) => {
+const AppConnector = () => {
   const [data, setData] = useState(null)
 
+  //useEffect such the everytime the any value in the firebase changes it should re-render
   useEffect(() => {
     const dataRef = firebase.database().ref('meter')
     dataRef.on('value', (snapshot) => {
@@ -19,7 +26,8 @@ const AppConnector = ({ rechargeValues }) => {
 
   return (
     <div>
-      <AppBarNav data={data} rechargeValues={rechargeValues} />
+      {/* //passing the data from the database to the AppBarNav */}
+      <AppBarNav data={data} />
     </div>
   )
 }

@@ -1,10 +1,7 @@
+//renders the NotConnector
 import React from 'react'
-import BottomNavbar from '../navbar/BottomNavbar'
 import '../combined.css'
-import NotConnector from '../lib/NotConnector'
-
-import AppConnector from '../lib/AppConnector'
-import NavBadge from '../lib/NavBadge'
+import NotConnector from '../lib/NotificationConnector'
 const Notifications = ({ data }) => {
   console.log('notifaction ', data)
   return (

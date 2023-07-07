@@ -1,16 +1,18 @@
+/*
+-This component returns 1 if the valve is open else 0
+*/
+
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import { sendValue } from '../lib/Connector'
-import Navbar from '../navbar/Navbar'
 import BottomNavbar from '../navbar/BottomNavbar'
 import '../combined.css'
-import AppBarNav from '../navbar/AppBar'
 import { AppContext } from '../lib/AppState'
 export default function Control() {
-  const { loading, setLoading } = React.useContext(AppContext)
+  const { loading, setLoading } = React.useContext(AppContext) // used to keep the state CircularProgress
 
   const timerRef = React.useRef()
 

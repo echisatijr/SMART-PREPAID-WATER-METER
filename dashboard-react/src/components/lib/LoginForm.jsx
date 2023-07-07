@@ -1,3 +1,8 @@
+/*
+component for the login page
+checks if the user credentials entered matches the required ones
+*/
+
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import firebase from './firebase'

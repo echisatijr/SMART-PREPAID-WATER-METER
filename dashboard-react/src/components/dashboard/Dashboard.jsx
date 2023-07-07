@@ -1,10 +1,7 @@
+// displays the Monitor.js through the connector
 import React from 'react'
 import '../combined.css'
-import BottomNavbar from '../navbar/BottomNavbar'
-
-import Connector from '../lib/Connector'
-import NavBadge from '../lib/NavBadge'
-import AppConnector from '../lib/AppConnector'
+import Connector from '../lib/NotificationConnector'
 
 const Dashboard = () => {
   return (

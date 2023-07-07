@@ -1,10 +1,16 @@
+/*
+- This component gets the data that is passed from Connector.js and displays it for monitoring
+-Also gets the data from thingspeak 
+*/
+
+// imports
 import { CardContent, Card, Typography, Box } from '@mui/material'
 
 import React from 'react'
 import Iframe from 'react-iframe'
 import './Monitor.css'
 const Monitor = ({ data }) => {
-  const { flowRate, volume, token, remainingWater } = data
+  const { flowRate, volume, token, remainingWater } = data // data from Connector.js
 
   return (
     <Box
@@ -15,6 +21,10 @@ const Monitor = ({ data }) => {
         },
       }}
     >
+      {/* 
+        This gets the token and sets it as water purchased
+      
+      */}
       <div className='container monitor ' style={{ marginTop: 100 }}>
         <div className='row  data '>
           <div className='col-3 data_col'>
@@ -46,6 +56,10 @@ const Monitor = ({ data }) => {
               </CardContent>
             </Card>
           </div>
+          {/* 
+        This gets the total volume and sets it as water purchased
+      
+      */}
           <div className='col-3'>
             <Card
               sx={{
@@ -75,6 +89,10 @@ const Monitor = ({ data }) => {
               </CardContent>
             </Card>
           </div>
+          {/* 
+        This gets the remainingWater and sets it as remaining water
+      
+      */}
           <div className='col-3'>
             <Card
               sx={{
@@ -104,6 +122,11 @@ const Monitor = ({ data }) => {
               </CardContent>
             </Card>
           </div>
+
+          {/* 
+        This gets the flowrate and displays it as flowrate
+      
+      */}
           <div className='col-3'>
             <Card
               sx={{
@@ -135,6 +158,10 @@ const Monitor = ({ data }) => {
           </div>
         </div>
 
+        {/* 
+        This gets the data from things speak and displayes it
+      
+      */}
         <div className='row things'>
           <div className='col-md-6'>
             <Card
